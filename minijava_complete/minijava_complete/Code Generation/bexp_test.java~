@@ -1,0 +1,22 @@
+class RunClass {
+  public static void main(String[] a){
+               
+               //System.out.println(new int[10].length);        
+               System.out.println(new ExampleClass().compute(6));
+       }
+}
+
+class ExampleClass {
+   
+     public int compute(int num) {
+             boolean x;
+      	      x = (!(0 < 1) && (true && true)) && (!(0 > 1) && false);
+             System.out.println(x); // 0
+
+             // over
+             return 100;
+ }
+}
+
+ 
+

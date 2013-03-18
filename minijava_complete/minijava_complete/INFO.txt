@@ -1,0 +1,30 @@
+Group members:
+olehg (Oleh Godunok), hanch116 (Changhao Han)
+
+---------------------------------------------------------------------------------
+INFO - Part 2 
+
+The changes that were made, relative to the MiniJava grammar, shown on the MiniJava project web page, converted the regular expressions contained on the right-hand side of several of the non-terminals to productions. These regular expressions are Kleene closures of at least one other non-terminal, hence, these REs are depicted as Lists, which may be empty. Because of this, for each Kleene closure, other than the one for VarDeclaration, two non-terminals are present: a List (e.g. StatementList), which either creates a new List object, and a non-terminal of the type of the List which (right-hand) recursively constructs the list but contains at least one element (e.g. NonEmptySL). Creating a non-terminal for VarDeclarationList and NonEmptyVL and the corresponding productions resulted in two shift-reduce conflicts. These conflicts were resolved by removing the NonEmptyVL non-terminal and corresponding production, which required creating two additional productions wherever a VarDeclarationList was present in the grammar. Removing the shift-reduce conflicts in this manner came at a price, a slightly longer grammar, but this resulted in no conflicts in our BNF grammar for MiniJava. 
+
+---------------------------------------------------------------------------------
+INFO - Part 3
+
+In the static semantics, type checking, and construction of symbol tables phase we just did the basic error checking (i.-vi.) displayed in overview. Our symbol table construction contained a mapping from an id to a binding (contains information about that id), and a mapping from that id to its symbol table. This is quite unusual (potentially). We could have maintained a list of children scopes instead of a hashmap (with String keys); this would have allowed us to create recursive scopes as long as we also had a field indicated which scope we are in (offset from first scope in the list). There weren't any suprises that we encountered, but there were many subtle bugs which required us to spend most of our time debugging. One of the bugs was from part 2 of the project - precedence. We forget to set precedence for a few symbols ('.', '!', and a few others) which resulted in an incorrect AST. This bug manifested when calling a method: in !id.method(expression). We also changed had to make changes to our scanner since no error was output, our integers could start with 0 (permitted in Java!), and we forget to handle the case where a line comment is at EOF.
+
+---------------------------------------------------------------------------------
+INFO - Part 4
+
+We completed the code generation to x86-64 assembly phase of our compiler in a single pass. We had to create a new class (which didn't use the visitor pattern) to calculate the offsets of the field and methods (in the virtual dispatch table) of classes which don't extend object. Some unusual aspects of our code generation phase: 
+1. we maintained an int to represent the total amount of allocated memory on the stack which we used
+to align the stack before we generated a method call
+2. we used the registers to place arguments when we called external functions (i.e. methods part of boot.c)
+but we only used %rdi to hold the implicit argument "this"
+3. we violated the convention of pushing arguments from right to left by pushing from left to right (easy fix but didn't want to break our compiler)
+
+Extensions:
+1. function calls of the form object.method(...) are allowed any number of arguments (i.e. methods are allowed more than 6 parameters)
+(we were almost done with implementing deep copy, but...)
+
+
+An INFO file describing anything unusual about your compiler, including brief notes about extensions and optimizations you may have included.
+

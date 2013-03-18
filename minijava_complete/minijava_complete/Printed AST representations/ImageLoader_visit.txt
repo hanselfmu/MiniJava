@@ -1,0 +1,69 @@
+Program
+   MainClass @8
+      TestImage
+      args
+      IfStatement @10
+         Call
+            Boundary
+            test
+            Call
+               ImageLoader
+               loadBufferedImage
+               Call
+                  Boundary
+                  toBinary
+                  ArrayLookup
+                     args
+                     0
+         Block
+            Print @11
+               Call
+                  Boundary
+                  results
+         Print @12
+            Call
+               Boundary
+               failure
+   ClassDeclSimpl @20
+      ImageLoader
+      MethodDecl @29
+         BufferedImage
+         loadBufferedImage
+         Formal
+            BinaryString
+            pathName
+         VarDecl @30
+            BufferedImage
+            image
+         VarDecl @31
+            File
+            f
+         VarDecl @32
+            URI
+            uri
+         Assign @34
+            f
+            File
+         Assign @35
+            f
+            Call
+               f
+               open
+               Call
+                  Boundary
+                  toString
+                  pathname
+         Assign @36
+            uri
+            Call
+               f
+               toURI
+         Assign @37
+            image
+            Call
+               ImageIO
+               read
+               Call
+                  uri
+                  toURL
+         image

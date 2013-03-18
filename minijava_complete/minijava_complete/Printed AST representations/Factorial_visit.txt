@@ -1,0 +1,38 @@
+Program
+   MainClass @1
+      Factorial
+      a
+      Print @3
+         Call
+            Fac
+            ComputeFac
+            10
+   ClassDeclSimpl @7
+      Fac
+      MethodDecl @9
+         Type int
+         ComputeFac
+         Formal
+            Type int
+            num
+         VarDecl @10
+            Type int
+            num_aux
+         IfStatement @11
+            LessThan
+               num
+               1
+            Assign @12
+               num_aux
+               1
+            Assign @14
+               num_aux
+               Times
+                  num
+                  Call
+                     this
+                     ComputeFac
+                     Minus
+                        num
+                        1
+         num_aux

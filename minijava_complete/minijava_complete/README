@@ -1,0 +1,53 @@
+This is the start of a simple compiler which you can modify to compile
+the MiniJava language.  To demonstrate the basics of scanning and
+parsing, as well as to provide some basic structure, we're providing a
+"compiler" that will scan and parse "programs" in the following tiny
+programming language:
+
+	program ::= statement | program statement
+	statement ::= assignStmt | displayStmt
+	assignStmt ::= id = expr ;
+	displayStmt ::= display expr ;
+	expr ::= id | expr + expr | ( expr )
+	id ::= [a-zA-Z][a-zA-Z0-9_]*
+
+The AST classes provided are closely based on those provided from the
+MiniJava website, slightly modified to add tracking of line numbers,
+as well as adding a separate Display node only used in the toy
+language, but not for MiniJava.  They have also been updated to use
+Lists with type parameters instead of the original Vector class.
+
+All of the compiler source code is in the src directory.
+
+The TestScanner and TestParser classes are examples of how to use the
+scanner and parser in a compiler.  The rest of the compiler is stored
+in several subdirectories:
+
+    Scanner: the implementation of a demo scanner
+
+    Parser: the implementation of a demo parser
+
+    AST: the implementation of the abstract syntax tree
+
+The lib directory stores the jar files for CUP and JFlex that are
+needed to build and run the compiler and a couple of source files from
+CUP that may be useful for reference.
+
+SamplePrograms contains a sample program in the example language,
+which you can replace with MiniJava programs to be be compiled and run
+to test your MiniJava compiler as you develop it.  The
+SampleMiniJavaPrograms directory contains larger MiniJava programs for
+testing.
+
+The build.xml ant file supports building, running, and testing the
+demo compiler scanning and parsing examples.  Look at it for details.
+
+Sources: This project (and readme) are heavily borrowed from Hal Perkins'
+previous instances of CSE 401.
+
+Hal's Sources: AST classes and SampleMiniJavaPrograms from the Appel/
+Palsberg MiniJava project.  Some code and ideas borrowed from an
+earlier UW version by Craig Chambers with modifications by Jonathan
+Beall and Hal Perkins.
+
+Updated Winter 2013 by Michael Ringenburg.

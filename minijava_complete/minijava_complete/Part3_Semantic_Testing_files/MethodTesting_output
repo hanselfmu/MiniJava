@@ -1,0 +1,75 @@
+// Testing TestSemantics on MethodTesting.java on 
+
+x is already declared!
+Error at 3: parameter and argument types do not match
+Error at 3: cannot be displayed
+Error at 14: 'num' is not declared
+Error at 14: both expression must be integers
+Error at 14: the expression must be of type boolean
+Error at 17: 'num' is not declared
+Error at 17: parameter and argument types do not match
+Error at 17: both expression must be integers
+Error at 17: the expression is not assignable to 'num_aux'
+Error at 11: return type does not match
+Error at 23: 'num_aux' is not declared
+Error at 23: parameter and argument types do not match
+Error at 38: return type does not match
+Error at 41: return type does not match
+Error at 52: return type does not match
+Semantic Analysis complete: an error(s) was found
+Symbol Tables:
+
+Global:
+	Example3-> Binding=[id= Example3|type= ClassType- id: Example3, base: Example1]
+		caller-> Binding=[id= caller|type= MethodType- return: ArrayType- 1, int, Param1: int]
+		b-> Binding=[id= b|type= ArrayType- 1, int]
+		test-> Binding=[id= test|type= MethodType- return: boolean, Param1: ArrayType- 1, int]
+		ComputeFac-> Binding=[id= ComputeFac|type= MethodType- return: ClassType- id: Example2, base: Example1, Param1: ClassType- id: Example1, base: Object]
+			t-> Binding=[id= t|type= ClassType- id: Example1, base: Object]
+
+
+	RunClass-> Binding=[id= RunClass|type= ClassType- id: RunClass, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
+	Example2-> Binding=[id= Example2|type= ClassType- id: Example2, base: Example1]
+		caller-> Binding=[id= caller|type= MethodType- return: ArrayType- 1, int, Param1: int]
+		b-> Binding=[id= b|type= ArrayType- 1, int]
+		test-> Binding=[id= test|type= MethodType- return: boolean, Param1: ArrayType- 1, int]
+		fac-> Binding=[id= fac|type= ClassType- id: Example2, base: Example1]
+		p-> Binding=[id= p|type= ClassType- id: Example1, base: Object]
+		testing-> Binding=[id= testing|type= MethodType- return: boolean, Param1: ClassType- id: Example1, base: Object, Param2: ClassType- id: Example2, base: Example1, Param3: int]
+			b-> Binding=[id= b|type= ClassType- id: Example2, base: Example1]
+			c-> Binding=[id= c|type= int]
+			a-> Binding=[id= a|type= ClassType- id: Example1, base: Object]
+
+		run-> Binding=[id= run|type= MethodType- return: int, Param1: int, Param2: int, Param3: int, Param4: int]
+			t-> Binding=[id= t|type= int]
+			z-> Binding=[id= z|type= int]
+			x-> Binding=[id= x|type= int]
+
+		j-> Binding=[id= j|type= int]
+		k-> Binding=[id= k|type= boolean]
+		ComputeFac-> Binding=[id= ComputeFac|type= MethodType- return: ClassType- id: Example1, base: Object, Param1: ClassType- id: Example1, base: Object]
+			t-> Binding=[id= t|type= ClassType- id: Example1, base: Object]
+
+
+	Example1-> Binding=[id= Example1|type= ClassType- id: Example1, base: Object]
+		caller-> Binding=[id= caller|type= MethodType- return: ArrayType- 1, int, Param1: int]
+			x-> Binding=[id= x|type= int]
+
+		b-> Binding=[id= b|type= ArrayType- 1, int]
+		test-> Binding=[id= test|type= MethodType- return: boolean, Param1: ArrayType- 1, int]
+			num-> Binding=[id= num|type= undefined]
+			s-> Binding=[id= s|type= ArrayType- 1, int]
+			num_aux-> Binding=[id= num_aux|type= undefined]
+
+		ComputeFac-> Binding=[id= ComputeFac|type= MethodType- return: ClassType- id: Example1, base: Object, Param1: ClassType- id: Example1, base: Object]
+			num-> Binding=[id= num|type= undefined]
+			t-> Binding=[id= t|type= ClassType- id: Example1, base: Object]
+			arr-> Binding=[id= arr|type= ArrayType- 1, int]
+			num_aux-> Binding=[id= num_aux|type= int]
+
+
+

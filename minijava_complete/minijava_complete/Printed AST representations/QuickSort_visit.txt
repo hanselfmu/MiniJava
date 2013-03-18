@@ -1,0 +1,314 @@
+Program
+   MainClass @1
+      QuickSort
+      a
+      Print @3
+         Call
+            QS
+            Start
+            10
+   ClassDeclSimpl @11
+      QS
+      VarDecl @13
+         Type int []
+         number
+      VarDecl @14
+         Type int
+         size
+      MethodDecl @18
+         Type int
+         Start
+         Formal
+            Type int
+            sz
+         VarDecl @19
+            Type int
+            aux01
+         Assign @20
+            aux01
+            Call
+               this
+               Init
+               sz
+         Assign @21
+            aux01
+            Call
+               this
+               Print
+         Print @22
+            9999
+         Assign @23
+            aux01
+            Minus
+               size
+               1
+         Assign @24
+            aux01
+            Call
+               this
+               Sort
+               0
+               aux01
+         Assign @25
+            aux01
+            Call
+               this
+               Print
+         0
+      MethodDecl @31
+         Type int
+         Sort
+         Formal
+            Type int
+            left
+         Formal
+            Type int
+            right
+         VarDecl @32
+            Type int
+            v
+         VarDecl @33
+            Type int
+            i
+         VarDecl @34
+            Type int
+            j
+         VarDecl @35
+            Type int
+            nt
+         VarDecl @36
+            Type int
+            t
+         VarDecl @37
+            Type boolean
+            cont01
+         VarDecl @38
+            Type boolean
+            cont02
+         VarDecl @39
+            Type int
+            aux03
+         Assign @40
+            t
+            0
+         IfStatement @41
+            LessThan
+               left
+               right
+            Block
+               Assign @42
+                  v
+                  ArrayLookup
+                     number
+                     right
+               Assign @43
+                  i
+                  Minus
+                     left
+                     1
+               Assign @44
+                  j
+                  right
+               Assign @45
+                  cont01
+                  true
+               WhileStatement @46
+                  cont01
+                  Block
+                     Assign @47
+                        cont02
+                        true
+                     WhileStatement @48
+                        cont02
+                        Block
+                           Assign @49
+                              i
+                              Plus
+                                 i
+                                 1
+                           Assign @50
+                              aux03
+                              ArrayLookup
+                                 number
+                                 i
+                           IfStatement @51
+                              Not
+                                 LessThan
+                                    aux03
+                                    v
+                              Assign @51
+                                 cont02
+                                 false
+                              Assign @52
+                                 cont02
+                                 true
+                     Assign @54
+                        cont02
+                        true
+                     WhileStatement @55
+                        cont02
+                        Block
+                           Assign @56
+                              j
+                              Minus
+                                 j
+                                 1
+                           Assign @57
+                              aux03
+                              ArrayLookup
+                                 number
+                                 j
+                           IfStatement @58
+                              Not
+                                 LessThan
+                                    v
+                                    aux03
+                              Assign @58
+                                 cont02
+                                 false
+                              Assign @59
+                                 cont02
+                                 true
+                     Assign @63
+                        t
+                        ArrayLookup
+                           number
+                           i
+                     ArrayAssign @64
+                        number
+                        i
+                        ArrayLookup
+                           number
+                           j
+                     ArrayAssign @65
+                        number
+                        j
+                        t
+                     IfStatement @67
+                        LessThan
+                           j
+                           Plus
+                              i
+                              1
+                        Assign @67
+                           cont01
+                           false
+                        Assign @68
+                           cont01
+                           true
+               ArrayAssign @70
+                  number
+                  j
+                  ArrayLookup
+                     number
+                     i
+               ArrayAssign @71
+                  number
+                  i
+                  ArrayLookup
+                     number
+                     right
+               ArrayAssign @72
+                  number
+                  right
+                  t
+               Assign @73
+                  nt
+                  Call
+                     this
+                     Sort
+                     left
+                     Minus
+                        i
+                        1
+               Assign @74
+                  nt
+                  Call
+                     this
+                     Sort
+                     Plus
+                        i
+                        1
+                     right
+            Assign @76
+               nt
+               0
+         0
+      MethodDecl @82
+         Type int
+         Print
+         VarDecl @83
+            Type int
+            j
+         Assign @84
+            j
+            0
+         WhileStatement @85
+            LessThan
+               j
+               size
+            Block
+               Print @86
+                  ArrayLookup
+                     number
+                     j
+               Assign @87
+                  j
+                  Plus
+                     j
+                     1
+         0
+      MethodDecl @94
+         Type int
+         Init
+         Formal
+            Type int
+            sz
+         Assign @95
+            size
+            sz
+         Assign @96
+            number
+            NewArray
+               sz
+         ArrayAssign @98
+            number
+            0
+            20
+         ArrayAssign @99
+            number
+            1
+            7
+         ArrayAssign @100
+            number
+            2
+            12
+         ArrayAssign @101
+            number
+            3
+            18
+         ArrayAssign @102
+            number
+            4
+            2
+         ArrayAssign @103
+            number
+            5
+            11
+         ArrayAssign @104
+            number
+            6
+            6
+         ArrayAssign @105
+            number
+            7
+            9
+         ArrayAssign @106
+            number
+            8
+            19
+         ArrayAssign @107
+            number
+            9
+            5
+         0

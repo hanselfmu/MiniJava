@@ -1,0 +1,695 @@
+Program
+   MainClass @1
+      LinkedList
+      a
+      Print @3
+         Call
+            LL
+            Start
+   ClassDeclSimpl @7
+      Element
+      VarDecl @8
+         Type int
+         Age
+      VarDecl @9
+         Type int
+         Salary
+      VarDecl @10
+         Type boolean
+         Married
+      MethodDecl @13
+         Type boolean
+         Init
+         Formal
+            Type int
+            v_Age
+         Formal
+            Type int
+            v_Salary
+         Formal
+            Type boolean
+            v_Married
+         Assign @14
+            Age
+            v_Age
+         Assign @15
+            Salary
+            v_Salary
+         Assign @16
+            Married
+            v_Married
+         true
+      MethodDecl @20
+         Type int
+         GetAge
+         Age
+      MethodDecl @24
+         Type int
+         GetSalary
+         Salary
+      MethodDecl @28
+         Type boolean
+         GetMarried
+         Married
+      MethodDecl @34
+         Type boolean
+         Equal
+         Formal
+            Element
+            other
+         VarDecl @35
+            Type boolean
+            ret_val
+         VarDecl @36
+            Type int
+            aux01
+         VarDecl @37
+            Type int
+            aux02
+         VarDecl @38
+            Type int
+            nt
+         Assign @39
+            ret_val
+            true
+         Assign @41
+            aux01
+            Call
+               other
+               GetAge
+         IfStatement @42
+            Call
+               Not
+                  this
+               Compare
+               aux01
+               Age
+            Assign @42
+               ret_val
+               false
+            Block
+               Assign @44
+                  aux02
+                  Call
+                     other
+                     GetSalary
+               IfStatement @45
+                  Call
+                     Not
+                        this
+                     Compare
+                     aux02
+                     Salary
+                  Assign @45
+                     ret_val
+                     false
+                  IfStatement @47
+                     Married
+                     IfStatement @48
+                        Call
+                           Not
+                              other
+                           GetMarried
+                        Assign @48
+                           ret_val
+                           false
+                        Assign @49
+                           nt
+                           0
+                     IfStatement @51
+                        Call
+                           other
+                           GetMarried
+                        Assign @51
+                           ret_val
+                           false
+                        Assign @52
+                           nt
+                           0
+         ret_val
+      MethodDecl @61
+         Type boolean
+         Compare
+         Formal
+            Type int
+            num1
+         Formal
+            Type int
+            num2
+         VarDecl @62
+            Type boolean
+            retval
+         VarDecl @63
+            Type int
+            aux02
+         Assign @64
+            retval
+            false
+         Assign @65
+            aux02
+            Plus
+               num2
+               1
+         IfStatement @66
+            LessThan
+               num1
+               num2
+            Assign @66
+               retval
+               false
+            IfStatement @67
+               Not
+                  LessThan
+                     num1
+                     aux02
+               Assign @67
+                  retval
+                  false
+               Assign @68
+                  retval
+                  true
+         retval
+   ClassDeclSimpl @74
+      List
+      VarDecl @75
+         Element
+         elem
+      VarDecl @76
+         List
+         next
+      VarDecl @77
+         Type boolean
+         end
+      MethodDecl @80
+         Type boolean
+         Init
+         Assign @81
+            end
+            true
+         true
+      MethodDecl @86
+         Type boolean
+         InitNew
+         Formal
+            Element
+            v_elem
+         Formal
+            List
+            v_next
+         Formal
+            Type boolean
+            v_end
+         Assign @87
+            end
+            v_end
+         Assign @88
+            elem
+            v_elem
+         Assign @89
+            next
+            v_next
+         true
+      MethodDecl @94
+         List
+         Insert
+         Formal
+            Element
+            new_elem
+         VarDecl @95
+            Type boolean
+            ret_val
+         VarDecl @96
+            List
+            aux03
+         VarDecl @97
+            List
+            aux02
+         Assign @98
+            aux03
+            this
+         Assign @99
+            aux02
+            List
+         Assign @100
+            ret_val
+            Call
+               aux02
+               InitNew
+               new_elem
+               aux03
+               false
+         aux02
+      MethodDecl @106
+         Type boolean
+         SetNext
+         Formal
+            List
+            v_next
+         Assign @107
+            next
+            v_next
+         true
+      MethodDecl @112
+         List
+         Delete
+         Formal
+            Element
+            e
+         VarDecl @113
+            List
+            my_head
+         VarDecl @114
+            Type boolean
+            ret_val
+         VarDecl @115
+            Type boolean
+            aux05
+         VarDecl @116
+            List
+            aux01
+         VarDecl @117
+            List
+            prev
+         VarDecl @118
+            Type boolean
+            var_end
+         VarDecl @119
+            Element
+            var_elem
+         VarDecl @120
+            Type int
+            aux04
+         VarDecl @121
+            Type int
+            nt
+         Assign @124
+            my_head
+            this
+         Assign @125
+            ret_val
+            false
+         Assign @126
+            aux04
+            Minus
+               0
+               1
+         Assign @127
+            aux01
+            this
+         Assign @128
+            prev
+            this
+         Assign @129
+            var_end
+            end
+         Assign @130
+            var_elem
+            elem
+         WhileStatement @131
+            And
+               Not
+                  var_end
+               Not
+                  ret_val
+            Block
+               IfStatement @132
+                  Call
+                     e
+                     Equal
+                     var_elem
+                  Block
+                     Assign @133
+                        ret_val
+                        true
+                     IfStatement @134
+                        LessThan
+                           aux04
+                           0
+                        Block
+                           Assign @136
+                              my_head
+                              Call
+                                 aux01
+                                 GetNext
+                        Block
+                           Print @139
+                              Minus
+                                 0
+                                 555
+                           Assign @140
+                              aux05
+                              Call
+                                 prev
+                                 SetNext
+                                 Call
+                                    aux01
+                                    GetNext
+                           Print @141
+                              Minus
+                                 0
+                                 555
+                  Assign @144
+                     nt
+                     0
+               IfStatement @145
+                  Not
+                     ret_val
+                  Block
+                     Assign @146
+                        prev
+                        aux01
+                     Assign @147
+                        aux01
+                        Call
+                           aux01
+                           GetNext
+                     Assign @148
+                        var_end
+                        Call
+                           aux01
+                           GetEnd
+                     Assign @149
+                        var_elem
+                        Call
+                           aux01
+                           GetElem
+                     Assign @150
+                        aux04
+                        1
+                  Assign @151
+                     nt
+                     0
+         my_head
+      MethodDecl @158
+         Type int
+         Search
+         Formal
+            Element
+            e
+         VarDecl @159
+            Type int
+            int_ret_val
+         VarDecl @160
+            List
+            aux01
+         VarDecl @161
+            Element
+            var_elem
+         VarDecl @162
+            Type boolean
+            var_end
+         VarDecl @163
+            Type int
+            nt
+         Assign @165
+            int_ret_val
+            0
+         Assign @166
+            aux01
+            this
+         Assign @167
+            var_end
+            end
+         Assign @168
+            var_elem
+            elem
+         WhileStatement @169
+            Not
+               var_end
+            Block
+               IfStatement @170
+                  Call
+                     e
+                     Equal
+                     var_elem
+                  Block
+                     Assign @171
+                        int_ret_val
+                        1
+                  Assign @173
+                     nt
+                     0
+               Assign @174
+                  aux01
+                  Call
+                     aux01
+                     GetNext
+               Assign @175
+                  var_end
+                  Call
+                     aux01
+                     GetEnd
+               Assign @176
+                  var_elem
+                  Call
+                     aux01
+                     GetElem
+         int_ret_val
+      MethodDecl @181
+         Type boolean
+         GetEnd
+         end
+      MethodDecl @185
+         Element
+         GetElem
+         elem
+      MethodDecl @189
+         List
+         GetNext
+         next
+      MethodDecl @195
+         Type boolean
+         Print
+         VarDecl @196
+            List
+            aux01
+         VarDecl @197
+            Type boolean
+            var_end
+         VarDecl @198
+            Element
+            var_elem
+         Assign @200
+            aux01
+            this
+         Assign @201
+            var_end
+            end
+         Assign @202
+            var_elem
+            elem
+         WhileStatement @203
+            Not
+               var_end
+            Block
+               Print @204
+                  Call
+                     var_elem
+                     GetAge
+               Assign @205
+                  aux01
+                  Call
+                     aux01
+                     GetNext
+               Assign @206
+                  var_end
+                  Call
+                     aux01
+                     GetEnd
+               Assign @207
+                  var_elem
+                  Call
+                     aux01
+                     GetElem
+         true
+   ClassDeclSimpl @217
+      LL
+      MethodDecl @219
+         Type int
+         Start
+         VarDecl @221
+            List
+            head
+         VarDecl @222
+            List
+            last_elem
+         VarDecl @223
+            Type boolean
+            aux01
+         VarDecl @224
+            Element
+            el01
+         VarDecl @225
+            Element
+            el02
+         VarDecl @226
+            Element
+            el03
+         Assign @228
+            last_elem
+            List
+         Assign @229
+            aux01
+            Call
+               last_elem
+               Init
+         Assign @230
+            head
+            last_elem
+         Assign @231
+            aux01
+            Call
+               head
+               Init
+         Assign @232
+            aux01
+            Call
+               head
+               Print
+         Assign @235
+            el01
+            Element
+         Assign @236
+            aux01
+            Call
+               el01
+               Init
+               25
+               37000
+               false
+         Assign @237
+            head
+            Call
+               head
+               Insert
+               el01
+         Assign @238
+            aux01
+            Call
+               head
+               Print
+         Print @239
+            10000000
+         Assign @241
+            el01
+            Element
+         Assign @242
+            aux01
+            Call
+               el01
+               Init
+               39
+               42000
+               true
+         Assign @243
+            el02
+            el01
+         Assign @244
+            head
+            Call
+               head
+               Insert
+               el01
+         Assign @245
+            aux01
+            Call
+               head
+               Print
+         Print @246
+            10000000
+         Assign @248
+            el01
+            Element
+         Assign @249
+            aux01
+            Call
+               el01
+               Init
+               22
+               34000
+               false
+         Assign @250
+            head
+            Call
+               head
+               Insert
+               el01
+         Assign @251
+            aux01
+            Call
+               head
+               Print
+         Assign @252
+            el03
+            Element
+         Assign @253
+            aux01
+            Call
+               el03
+               Init
+               27
+               34000
+               false
+         Print @254
+            Call
+               head
+               Search
+               el02
+         Print @255
+            Call
+               head
+               Search
+               el03
+         Print @256
+            10000000
+         Assign @258
+            el01
+            Element
+         Assign @259
+            aux01
+            Call
+               el01
+               Init
+               28
+               35000
+               false
+         Assign @260
+            head
+            Call
+               head
+               Insert
+               el01
+         Assign @261
+            aux01
+            Call
+               head
+               Print
+         Print @262
+            2220000
+         Assign @264
+            head
+            Call
+               head
+               Delete
+               el02
+         Assign @265
+            aux01
+            Call
+               head
+               Print
+         Print @266
+            33300000
+         Assign @269
+            head
+            Call
+               head
+               Delete
+               el01
+         Assign @270
+            aux01
+            Call
+               head
+               Print
+         Print @271
+            44440000
+         0

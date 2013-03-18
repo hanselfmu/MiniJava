@@ -1,0 +1,422 @@
+class LinearSearch{
+    public static void main(String[] a){
+	System.out.println(new LS().Start(10));
+    }
+}
+
+
+// This class contains an array of integers and
+// methods to initialize, print and search the array
+// using Linear Search
+class LS {
+    int[] number ;
+    int size ;
+    
+    // Invoke methods to initialize, print and search
+    // for elements on the array
+    public int Start(int sz){
+	int aux01 ;
+	int aux02 ;
+
+	aux01 = this.Init(sz);
+	aux02 = this.Print();
+	System.out.println(9999);
+	System.out.println(this.Search(8));
+	System.out.println(this.Search(12)) ;
+	System.out.println(this.Search(17)) ;
+	System.out.println(this.Search(50)) ;
+	return 55 ;
+    }
+
+    // Print array of integers
+    public int Print(){
+	int j ;
+
+	j = 1 ;
+	while (j < (size)) {
+	    System.out.println(number[j]);
+	    j = j + 1 ;
+	}
+	return 0 ;
+    }
+
+    // Search for a specific value (num) using
+    // linear search
+    public int Search(int num){
+	int j ;
+	boolean ls01 ;
+	int ifound ;
+	int aux01 ;
+	int aux02 ;
+	int nt ;
+
+	j = 1 ;
+	ls01 = false ;
+	ifound = 0 ;
+	
+	//System.out.println(num);
+	while (j < (size)) {
+	    aux01 = number[j] ;
+	    aux02 = num + 1 ;
+	    if (aux01 < num) nt = 0 ;
+	    else if (!(aux01 < aux02)) nt = 0 ;
+	    else {
+		ls01 = true ;
+		ifound = 1 ;
+		j = size ;
+	    }
+	    j = j + 1 ;
+	}
+
+	return ifound ;
+    }
+
+
+    
+    // initialize array of integers with some
+    // some sequence
+    public int Init(int sz){
+	int j ;
+	int k ;
+	int aux01 ;
+	int aux02 ;
+
+	size = sz ;
+	number = new int[sz] ;
+	
+	j = 1 ;
+	k = size + 1 ;
+	while (j < (size)) {
+	    aux01 = 2 * j ;
+	    aux02 = k - 3 ;
+	    number[j] = aux01 + aux02 ;
+	    j = j + 1 ;
+	    k = k - 1 ;
+	}
+	return 0 ;	
+    }
+
+}
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	call LS$LS
+	movq %rax,%rdi
+	movq $10,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+LinearSearch$$: .quad 0
+
+LS$Start:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	pushq %rdi
+	movq %rdi,%rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-16(%rbp)
+	movq $9999,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rax
+	movq $8,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rax
+	movq $12,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rax
+	movq $17,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rax
+	movq $50,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $55,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+LS$Print:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+test1:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq 16(%rdi),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done1
+	movq 8(%rdi),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	jmp test1
+done1:
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+LS$Search:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $48,%rsp
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+	movq $0,%rax
+	movq %rax,-16(%rbp)
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+test2:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq 16(%rdi),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done2
+	movq 8(%rdi),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax
+	movq %rax,-32(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-40(%rbp)
+	movq -32(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else1
+	movq $0,%rax
+	movq %rax,-48(%rbp)
+	jmp done3
+else1:
+	movq -32(%rbp),%rax
+	pushq %rax
+	movq -40(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jl else2
+	cmpq $0,%rax
+	je done4
+	movq $0,%rax
+	movq %rax,-48(%rbp)
+	jmp done4
+else2:
+	movq $1,%rax
+	movq %rax,-16(%rbp)
+	movq $1,%rax
+	movq %rax,-24(%rbp)
+	movq 16(%rdi),%rax
+	movq %rax,-8(%rbp)
+done4:
+done3:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	jmp test2
+done2:
+	movq -24(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+LS$Init:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $32,%rsp
+	movq 16(%rbp),%rax
+	movq %rax,16(%rdi)
+	movq 16(%rbp),%rax
+	pushq %rax
+	incq %rax
+	shlq $3,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call mjmalloc
+	popq %rdi
+	popq %rdx
+	movq %rdx,0(%rax)
+	movq $8,%rcx
+	pushq %rax
+test3:
+	testq $0,%rdx
+	je done5
+	addq %rcx,%rax
+	movq $0,(%rax)
+	shlq $2,%rcx
+	decq %rdx
+	jmp test3
+done5:
+	popq %rax
+	movq %rax,8(%rdi)
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+	movq 16(%rdi),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+test4:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq 16(%rdi),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done6
+	movq $2,%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	imulq %rdx,%rax
+	movq %rax,-24(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $3,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-32(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	pushq %rax
+	movq -32(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	popq %rdx
+	movq 8(%rdi),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	jmp test4
+done6:
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+LS$LS:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $24,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq LS$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+LS$$: .quad 0
+	.quad LS$LS
+	.quad LS$Start
+	.quad LS$Print
+	.quad LS$Search
+	.quad LS$Init
+
+

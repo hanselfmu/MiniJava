@@ -1,0 +1,105 @@
+
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	call Fac$Fac
+	movq %rax,%rdi
+	movq $10,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	movq %rax,%rdi
+	call put
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+Factorial$$: .quad 0
+
+Fac$ComputeFac:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	movq $10,%rax
+	pushq %rax
+	incq %rax
+	shlq $3,%rax
+	movq %rax,%rdi
+	call mjmalloc
+	popq %rdx
+	movq %rdx,0(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq $0,24(%rax)
+	movq $0,32(%rax)
+	movq $0,40(%rax)
+	movq $0,48(%rax)
+	movq $0,56(%rax)
+	movq $0,64(%rax)
+	movq $0,72(%rax)
+	movq $0,80(%rax)
+	movq %rax,-8(%rbp)
+	movq $0,%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	movq -8(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq $2,%rax
+	pushq %rax
+	movq $2,%rax
+	popq %rdx
+	movq -8(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq $4,%rax
+	pushq %rax
+	movq $3,%rax
+	popq %rdx
+	movq -8(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $0,%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax)
+	pushq %rax
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $2,%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax)
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $3,%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax)
+	popq %rdx
+	addq %rdx,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Fac$Fac:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq $8,%rdi
+	call mjmalloc
+	leaq Fac$$,%rdx
+	movq %rdx,(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+Fac$$: .quad 0
+	.quad Fac$Fac
+	.quad Fac$ComputeFac
+
+

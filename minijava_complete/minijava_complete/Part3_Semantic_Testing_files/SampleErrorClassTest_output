@@ -1,0 +1,45 @@
+// Running TestSemantics on SampleErrorClassTest
+
+Error at 3: parameter and argument types do not match
+Error at 3: cannot be displayed
+Error at 15: the expression is not assignable to 's3'
+Error at 29: both expression must be integers
+Error at 29: the expression is not assignable to 'i'
+Semantic Analysis complete: an error(s) was found
+Symbol Tables:
+
+Global:
+	SampleErrorClassTest-> Binding=[id= SampleErrorClassTest|type= ClassType- id: SampleErrorClassTest, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
+	SampleClassB-> Binding=[id= SampleClassB|type= ClassType- id: SampleClassB, base: SampleAbstractClass]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: boolean]
+		s3-> Binding=[id= s3|type= int]
+
+	SampleAbstractClass-> Binding=[id= SampleAbstractClass|type= ClassType- id: SampleAbstractClass, base: Object]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: boolean]
+			i-> Binding=[id= i|type= boolean]
+
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassC-> Binding=[id= SampleClassC|type= ClassType- id: SampleClassC, base: SampleClassA]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: boolean]
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassA-> Binding=[id= SampleClassA|type= ClassType- id: SampleClassA, base: SampleAbstractClass]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: boolean]
+			i-> Binding=[id= i|type= boolean]
+
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassMain-> Binding=[id= SampleClassMain|type= ClassType- id: SampleClassMain, base: SampleErrorClassTest]

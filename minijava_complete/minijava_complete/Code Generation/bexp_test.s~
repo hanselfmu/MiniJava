@@ -1,0 +1,171 @@
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	call ExampleClass$ExampleClass
+	movq %rax,%rdi
+	movq $6,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+RunClass$$: .quad 0
+
+ExampleClass$compute:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $1,%rax
+	cmpq $0,%rax
+	je genfalse2
+	movq $0,%rax
+	cmpq $0,%rax
+	je genfalse2
+	movq $1,%rax
+	jmp storeit2
+genfalse2:
+	movq $0,%rax
+storeit2:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $1,%rax
+	pushq %rax
+	movq $2,%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge genfalse3
+	movq $1,%rax
+	jmp storeit3
+genfalse3:
+	movq $0,%rax
+storeit3:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $1,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit4
+	movq $0,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit4
+	jmp genfalse4
+	movq $1,%rax
+	jmp storeit4
+genfalse4:
+	movq $0,%rax
+storeit4:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $0,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit5
+	movq $0,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit5
+	jmp genfalse5
+	movq $1,%rax
+	jmp storeit5
+genfalse5:
+	movq $0,%rax
+storeit5:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $1,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit6
+	movq $1,%rax
+	xor $1,%rax
+	cmpq $0,%rax
+	jne storeit6
+	jmp genfalse6
+	movq $1,%rax
+	jmp storeit6
+genfalse6:
+	movq $0,%rax
+storeit6:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $1,%rax
+	pushq %rax
+	movq $2,%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jl genfalse7
+	movq $1,%rax
+	jmp storeit7
+genfalse7:
+	movq $0,%rax
+storeit7:
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $100,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+ExampleClass$ExampleClass:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $8,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq ExampleClass$$,%rdx
+	movq %rdx,(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+ExampleClass$$: .quad 0
+	.quad ExampleClass$ExampleClass
+	.quad ExampleClass$compute
+
+

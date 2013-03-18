@@ -1,0 +1,125 @@
+Global:
+	Visitor-> Binding=[id= Visitor|type= ClassType- id: Visitor, base: Object]
+		r-> Binding=[id= r|type= ClassType- id: Tree, base: Object]
+		visit-> Binding=[id= visit|type= MethodType- return: int, Param1: ClassType- id: Tree, base: Object]
+			nti-> Binding=[id= nti|type= int]
+			n-> Binding=[id= n|type= ClassType- id: Tree, base: Object]
+
+		l-> Binding=[id= l|type= ClassType- id: Tree, base: Object]
+
+	Tree-> Binding=[id= Tree|type= ClassType- id: Tree, base: Object]
+		Search-> Binding=[id= Search|type= MethodType- return: int, Param1: int]
+			ifound-> Binding=[id= ifound|type= int]
+			v_key-> Binding=[id= v_key|type= int]
+			key_aux-> Binding=[id= key_aux|type= int]
+			cont-> Binding=[id= cont|type= boolean]
+			current_node-> Binding=[id= current_node|type= ClassType- id: Tree, base: Object]
+
+		my_null-> Binding=[id= my_null|type= ClassType- id: Tree, base: Object]
+		Insert-> Binding=[id= Insert|type= MethodType- return: boolean, Param1: int]
+			ntb-> Binding=[id= ntb|type= boolean]
+			new_node-> Binding=[id= new_node|type= ClassType- id: Tree, base: Object]
+			v_key-> Binding=[id= v_key|type= int]
+			key_aux-> Binding=[id= key_aux|type= int]
+			cont-> Binding=[id= cont|type= boolean]
+			current_node-> Binding=[id= current_node|type= ClassType- id: Tree, base: Object]
+
+		accept-> Binding=[id= accept|type= MethodType- return: int, Param1: ClassType- id: Visitor, base: Object]
+			v-> Binding=[id= v|type= ClassType- id: Visitor, base: Object]
+			nti-> Binding=[id= nti|type= int]
+
+		Compare-> Binding=[id= Compare|type= MethodType- return: boolean, Param1: int, Param2: int]
+			ntb-> Binding=[id= ntb|type= boolean]
+			nti-> Binding=[id= nti|type= int]
+			num2-> Binding=[id= num2|type= int]
+			num1-> Binding=[id= num1|type= int]
+
+		SetHas_Left-> Binding=[id= SetHas_Left|type= MethodType- return: boolean, Param1: boolean]
+			val-> Binding=[id= val|type= boolean]
+
+		RemoveLeft-> Binding=[id= RemoveLeft|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object, Param2: ClassType- id: Tree, base: Object]
+			ntb-> Binding=[id= ntb|type= boolean]
+			p_node-> Binding=[id= p_node|type= ClassType- id: Tree, base: Object]
+			c_node-> Binding=[id= c_node|type= ClassType- id: Tree, base: Object]
+
+		Init-> Binding=[id= Init|type= MethodType- return: boolean, Param1: int]
+			v_key-> Binding=[id= v_key|type= int]
+
+		SetKey-> Binding=[id= SetKey|type= MethodType- return: boolean, Param1: int]
+			v_key-> Binding=[id= v_key|type= int]
+
+		RecPrint-> Binding=[id= RecPrint|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object]
+			node-> Binding=[id= node|type= ClassType- id: Tree, base: Object]
+			ntb-> Binding=[id= ntb|type= boolean]
+
+		left-> Binding=[id= left|type= ClassType- id: Tree, base: Object]
+		Remove-> Binding=[id= Remove|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object, Param2: ClassType- id: Tree, base: Object]
+			ntb-> Binding=[id= ntb|type= boolean]
+			p_node-> Binding=[id= p_node|type= ClassType- id: Tree, base: Object]
+			auxkey1-> Binding=[id= auxkey1|type= int]
+			auxkey2-> Binding=[id= auxkey2|type= int]
+			c_node-> Binding=[id= c_node|type= ClassType- id: Tree, base: Object]
+
+		Delete-> Binding=[id= Delete|type= MethodType- return: boolean, Param1: int]
+			is_root-> Binding=[id= is_root|type= boolean]
+			parent_node-> Binding=[id= parent_node|type= ClassType- id: Tree, base: Object]
+			ntb-> Binding=[id= ntb|type= boolean]
+			v_key-> Binding=[id= v_key|type= int]
+			key_aux-> Binding=[id= key_aux|type= int]
+			cont-> Binding=[id= cont|type= boolean]
+			found-> Binding=[id= found|type= boolean]
+			current_node-> Binding=[id= current_node|type= ClassType- id: Tree, base: Object]
+
+		right-> Binding=[id= right|type= ClassType- id: Tree, base: Object]
+		key-> Binding=[id= key|type= int]
+		SetHas_Right-> Binding=[id= SetHas_Right|type= MethodType- return: boolean, Param1: boolean]
+			val-> Binding=[id= val|type= boolean]
+
+		GetRight-> Binding=[id= GetRight|type= MethodType- return: ClassType- id: Tree, base: Object]
+
+		GetLeft-> Binding=[id= GetLeft|type= MethodType- return: ClassType- id: Tree, base: Object]
+
+		RemoveRight-> Binding=[id= RemoveRight|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object, Param2: ClassType- id: Tree, base: Object]
+			ntb-> Binding=[id= ntb|type= boolean]
+			p_node-> Binding=[id= p_node|type= ClassType- id: Tree, base: Object]
+			c_node-> Binding=[id= c_node|type= ClassType- id: Tree, base: Object]
+
+		SetLeft-> Binding=[id= SetLeft|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object]
+			ln-> Binding=[id= ln|type= ClassType- id: Tree, base: Object]
+
+		has_right-> Binding=[id= has_right|type= boolean]
+		Print-> Binding=[id= Print|type= MethodType- return: boolean]
+			ntb-> Binding=[id= ntb|type= boolean]
+			current_node-> Binding=[id= current_node|type= ClassType- id: Tree, base: Object]
+
+		GetHas_Left-> Binding=[id= GetHas_Left|type= MethodType- return: boolean]
+
+		GetHas_Right-> Binding=[id= GetHas_Right|type= MethodType- return: boolean]
+
+		GetKey-> Binding=[id= GetKey|type= MethodType- return: int]
+
+		SetRight-> Binding=[id= SetRight|type= MethodType- return: boolean, Param1: ClassType- id: Tree, base: Object]
+			rn-> Binding=[id= rn|type= ClassType- id: Tree, base: Object]
+
+		has_left-> Binding=[id= has_left|type= boolean]
+
+	MyVisitor-> Binding=[id= MyVisitor|type= ClassType- id: MyVisitor, base: Visitor]
+		r-> Binding=[id= r|type= ClassType- id: Tree, base: Object]
+		l-> Binding=[id= l|type= ClassType- id: Tree, base: Object]
+		visit-> Binding=[id= visit|type= MethodType- return: int, Param1: ClassType- id: Tree, base: Object]
+			nti-> Binding=[id= nti|type= int]
+			n-> Binding=[id= n|type= ClassType- id: Tree, base: Object]
+
+
+	TreeVisitor-> Binding=[id= TreeVisitor|type= ClassType- id: TreeVisitor, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
+	TV-> Binding=[id= TV|type= ClassType- id: TV, base: Object]
+		Start-> Binding=[id= Start|type= MethodType- return: int]
+			v-> Binding=[id= v|type= ClassType- id: MyVisitor, base: Visitor]
+			ntb-> Binding=[id= ntb|type= boolean]
+			root-> Binding=[id= root|type= ClassType- id: Tree, base: Object]
+			nti-> Binding=[id= nti|type= int]
+

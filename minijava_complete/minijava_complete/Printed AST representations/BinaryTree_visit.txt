@@ -1,0 +1,833 @@
+Program
+   MainClass @1
+      BinaryTree
+      a
+      Print @3
+         Call
+            BT
+            Start
+   ClassDeclSimpl @10
+      BT
+      MethodDecl @12
+         Type int
+         Start
+         VarDecl @13
+            Tree
+            root
+         VarDecl @14
+            Type boolean
+            ntb
+         VarDecl @15
+            Type int
+            nti
+         Assign @17
+            root
+            Tree
+         Assign @18
+            ntb
+            Call
+               root
+               Init
+               16
+         Assign @19
+            ntb
+            Call
+               root
+               Print
+         Print @20
+            100000000
+         Assign @21
+            ntb
+            Call
+               root
+               Insert
+               8
+         Assign @22
+            ntb
+            Call
+               root
+               Print
+         Assign @23
+            ntb
+            Call
+               root
+               Insert
+               24
+         Assign @24
+            ntb
+            Call
+               root
+               Insert
+               4
+         Assign @25
+            ntb
+            Call
+               root
+               Insert
+               12
+         Assign @26
+            ntb
+            Call
+               root
+               Insert
+               20
+         Assign @27
+            ntb
+            Call
+               root
+               Insert
+               28
+         Assign @28
+            ntb
+            Call
+               root
+               Insert
+               14
+         Assign @29
+            ntb
+            Call
+               root
+               Print
+         Print @30
+            Call
+               root
+               Search
+               24
+         Print @31
+            Call
+               root
+               Search
+               12
+         Print @32
+            Call
+               root
+               Search
+               16
+         Print @33
+            Call
+               root
+               Search
+               50
+         Print @34
+            Call
+               root
+               Search
+               12
+         Assign @35
+            ntb
+            Call
+               root
+               Delete
+               12
+         Assign @36
+            ntb
+            Call
+               root
+               Print
+         Print @37
+            Call
+               root
+               Search
+               12
+         0
+   ClassDeclSimpl @44
+      Tree
+      VarDecl @45
+         Tree
+         left
+      VarDecl @46
+         Tree
+         right
+      VarDecl @47
+         Type int
+         key
+      VarDecl @48
+         Type boolean
+         has_left
+      VarDecl @49
+         Type boolean
+         has_right
+      VarDecl @50
+         Tree
+         my_null
+      MethodDecl @53
+         Type boolean
+         Init
+         Formal
+            Type int
+            v_key
+         Assign @54
+            key
+            v_key
+         Assign @55
+            has_left
+            false
+         Assign @56
+            has_right
+            false
+         true
+      MethodDecl @61
+         Type boolean
+         SetRight
+         Formal
+            Tree
+            rn
+         Assign @62
+            right
+            rn
+         true
+      MethodDecl @67
+         Type boolean
+         SetLeft
+         Formal
+            Tree
+            ln
+         Assign @68
+            left
+            ln
+         true
+      MethodDecl @72
+         Tree
+         GetRight
+         right
+      MethodDecl @76
+         Tree
+         GetLeft
+         left
+      MethodDecl @80
+         Type int
+         GetKey
+         key
+      MethodDecl @84
+         Type boolean
+         SetKey
+         Formal
+            Type int
+            v_key
+         Assign @85
+            key
+            v_key
+         true
+      MethodDecl @89
+         Type boolean
+         GetHas_Right
+         has_right
+      MethodDecl @93
+         Type boolean
+         GetHas_Left
+         has_left
+      MethodDecl @97
+         Type boolean
+         SetHas_Left
+         Formal
+            Type boolean
+            val
+         Assign @98
+            has_left
+            val
+         true
+      MethodDecl @102
+         Type boolean
+         SetHas_Right
+         Formal
+            Type boolean
+            val
+         Assign @103
+            has_right
+            val
+         true
+      MethodDecl @110
+         Type boolean
+         Compare
+         Formal
+            Type int
+            num1
+         Formal
+            Type int
+            num2
+         VarDecl @111
+            Type boolean
+            ntb
+         VarDecl @112
+            Type int
+            nti
+         Assign @114
+            ntb
+            false
+         Assign @115
+            nti
+            Plus
+               num2
+               1
+         IfStatement @116
+            LessThan
+               num1
+               num2
+            Assign @116
+               ntb
+               false
+            IfStatement @117
+               Not
+                  LessThan
+                     num1
+                     nti
+               Assign @117
+                  ntb
+                  false
+               Assign @118
+                  ntb
+                  true
+         ntb
+      MethodDecl @124
+         Type boolean
+         Insert
+         Formal
+            Type int
+            v_key
+         VarDecl @125
+            Tree
+            new_node
+         VarDecl @126
+            Type boolean
+            ntb
+         VarDecl @127
+            Type boolean
+            cont
+         VarDecl @128
+            Type int
+            key_aux
+         VarDecl @129
+            Tree
+            current_node
+         Assign @131
+            new_node
+            Tree
+         Assign @132
+            ntb
+            Call
+               new_node
+               Init
+               v_key
+         Assign @133
+            current_node
+            this
+         Assign @134
+            cont
+            true
+         WhileStatement @135
+            cont
+            Block
+               Assign @136
+                  key_aux
+                  Call
+                     current_node
+                     GetKey
+               IfStatement @137
+                  LessThan
+                     v_key
+                     key_aux
+                  Block
+                     IfStatement @138
+                        Call
+                           current_node
+                           GetHas_Left
+                        Assign @139
+                           current_node
+                           Call
+                              current_node
+                              GetLeft
+                        Block
+                           Assign @141
+                              cont
+                              false
+                           Assign @142
+                              ntb
+                              Call
+                                 current_node
+                                 SetHas_Left
+                                 true
+                           Assign @143
+                              ntb
+                              Call
+                                 current_node
+                                 SetLeft
+                                 new_node
+                  Block
+                     IfStatement @147
+                        Call
+                           current_node
+                           GetHas_Right
+                        Assign @148
+                           current_node
+                           Call
+                              current_node
+                              GetRight
+                        Block
+                           Assign @150
+                              cont
+                              false
+                           Assign @151
+                              ntb
+                              Call
+                                 current_node
+                                 SetHas_Right
+                                 true
+                           Assign @152
+                              ntb
+                              Call
+                                 current_node
+                                 SetRight
+                                 new_node
+         true
+      MethodDecl @161
+         Type boolean
+         Delete
+         Formal
+            Type int
+            v_key
+         VarDecl @162
+            Tree
+            current_node
+         VarDecl @163
+            Tree
+            parent_node
+         VarDecl @164
+            Type boolean
+            cont
+         VarDecl @165
+            Type boolean
+            found
+         VarDecl @166
+            Type boolean
+            is_root
+         VarDecl @167
+            Type int
+            key_aux
+         VarDecl @168
+            Type boolean
+            ntb
+         Assign @170
+            current_node
+            this
+         Assign @171
+            parent_node
+            this
+         Assign @172
+            cont
+            true
+         Assign @173
+            found
+            false
+         Assign @174
+            is_root
+            true
+         WhileStatement @175
+            cont
+            Block
+               Assign @176
+                  key_aux
+                  Call
+                     current_node
+                     GetKey
+               IfStatement @177
+                  LessThan
+                     v_key
+                     key_aux
+                  IfStatement @178
+                     Call
+                        current_node
+                        GetHas_Left
+                     Block
+                        Assign @179
+                           parent_node
+                           current_node
+                        Assign @180
+                           current_node
+                           Call
+                              current_node
+                              GetLeft
+                     Assign @182
+                        cont
+                        false
+                  IfStatement @184
+                     LessThan
+                        key_aux
+                        v_key
+                     IfStatement @185
+                        Call
+                           current_node
+                           GetHas_Right
+                        Block
+                           Assign @186
+                              parent_node
+                              current_node
+                           Assign @187
+                              current_node
+                              Call
+                                 current_node
+                                 GetRight
+                        Assign @189
+                           cont
+                           false
+                     Block
+                        IfStatement @191
+                           is_root
+                           IfStatement @192
+                              And
+                                 Call
+                                    Not
+                                       current_node
+                                    GetHas_Right
+                                 Call
+                                    Not
+                                       current_node
+                                    GetHas_Left
+                              Assign @194
+                                 ntb
+                                 true
+                              Assign @196
+                                 ntb
+                                 Call
+                                    this
+                                    Remove
+                                    parent_node
+                                    current_node
+                           Assign @197
+                              ntb
+                              Call
+                                 this
+                                 Remove
+                                 parent_node
+                                 current_node
+                        Assign @198
+                           found
+                           true
+                        Assign @199
+                           cont
+                           false
+               Assign @201
+                  is_root
+                  false
+         found
+      MethodDecl @209
+         Type boolean
+         Remove
+         Formal
+            Tree
+            p_node
+         Formal
+            Tree
+            c_node
+         VarDecl @210
+            Type boolean
+            ntb
+         VarDecl @211
+            Type int
+            auxkey1
+         VarDecl @212
+            Type int
+            auxkey2
+         IfStatement @214
+            Call
+               c_node
+               GetHas_Left
+            Assign @215
+               ntb
+               Call
+                  this
+                  RemoveLeft
+                  p_node
+                  c_node
+            IfStatement @217
+               Call
+                  c_node
+                  GetHas_Right
+               Assign @218
+                  ntb
+                  Call
+                     this
+                     RemoveRight
+                     p_node
+                     c_node
+               Block
+                  Assign @220
+                     auxkey1
+                     Call
+                        c_node
+                        GetKey
+                  Assign @223
+                     auxkey2
+                     Call
+                        Call
+                           p_node
+                           GetLeft
+                        GetKey
+                  IfStatement @224
+                     Call
+                        this
+                        Compare
+                        auxkey1
+                        auxkey2
+                     Block
+                        Assign @225
+                           ntb
+                           Call
+                              p_node
+                              SetLeft
+                              my_null
+                        Assign @226
+                           ntb
+                           Call
+                              p_node
+                              SetHas_Left
+                              false
+                     Block
+                        Assign @229
+                           ntb
+                           Call
+                              p_node
+                              SetRight
+                              my_null
+                        Assign @230
+                           ntb
+                           Call
+                              p_node
+                              SetHas_Right
+                              false
+         true
+      MethodDecl @240
+         Type boolean
+         RemoveRight
+         Formal
+            Tree
+            p_node
+         Formal
+            Tree
+            c_node
+         VarDecl @241
+            Type boolean
+            ntb
+         WhileStatement @243
+            Call
+               c_node
+               GetHas_Right
+            Block
+               Assign @247
+                  ntb
+                  Call
+                     c_node
+                     SetKey
+                     Call
+                        Call
+                           c_node
+                           GetRight
+                        GetKey
+               Assign @248
+                  p_node
+                  c_node
+               Assign @249
+                  c_node
+                  Call
+                     c_node
+                     GetRight
+         Assign @251
+            ntb
+            Call
+               p_node
+               SetRight
+               my_null
+         Assign @252
+            ntb
+            Call
+               p_node
+               SetHas_Right
+               false
+         true
+      MethodDecl @260
+         Type boolean
+         RemoveLeft
+         Formal
+            Tree
+            p_node
+         Formal
+            Tree
+            c_node
+         VarDecl @261
+            Type boolean
+            ntb
+         WhileStatement @263
+            Call
+               c_node
+               GetHas_Left
+            Block
+               Assign @267
+                  ntb
+                  Call
+                     c_node
+                     SetKey
+                     Call
+                        Call
+                           c_node
+                           GetLeft
+                        GetKey
+               Assign @268
+                  p_node
+                  c_node
+               Assign @269
+                  c_node
+                  Call
+                     c_node
+                     GetLeft
+         Assign @271
+            ntb
+            Call
+               p_node
+               SetLeft
+               my_null
+         Assign @272
+            ntb
+            Call
+               p_node
+               SetHas_Left
+               false
+         true
+      MethodDecl @277
+         Type int
+         Search
+         Formal
+            Type int
+            v_key
+         VarDecl @278
+            Type boolean
+            cont
+         VarDecl @279
+            Type int
+            ifound
+         VarDecl @280
+            Tree
+            current_node
+         VarDecl @281
+            Type int
+            key_aux
+         Assign @283
+            current_node
+            this
+         Assign @284
+            cont
+            true
+         Assign @285
+            ifound
+            0
+         WhileStatement @286
+            cont
+            Block
+               Assign @287
+                  key_aux
+                  Call
+                     current_node
+                     GetKey
+               IfStatement @288
+                  LessThan
+                     v_key
+                     key_aux
+                  IfStatement @289
+                     Call
+                        current_node
+                        GetHas_Left
+                     Assign @290
+                        current_node
+                        Call
+                           current_node
+                           GetLeft
+                     Assign @291
+                        cont
+                        false
+                  IfStatement @293
+                     LessThan
+                        key_aux
+                        v_key
+                     IfStatement @294
+                        Call
+                           current_node
+                           GetHas_Right
+                        Assign @295
+                           current_node
+                           Call
+                              current_node
+                              GetRight
+                        Assign @296
+                           cont
+                           false
+                     Block
+                        Assign @298
+                           ifound
+                           1
+                        Assign @299
+                           cont
+                           false
+         ifound
+      MethodDecl @306
+         Type boolean
+         Print
+         VarDecl @307
+            Tree
+            current_node
+         VarDecl @308
+            Type boolean
+            ntb
+         Assign @310
+            current_node
+            this
+         Assign @311
+            ntb
+            Call
+               this
+               RecPrint
+               current_node
+         true
+      MethodDecl @316
+         Type boolean
+         RecPrint
+         Formal
+            Tree
+            node
+         VarDecl @317
+            Type boolean
+            ntb
+         IfStatement @319
+            Call
+               node
+               GetHas_Left
+            Block
+               Assign @322
+                  ntb
+                  Call
+                     this
+                     RecPrint
+                     Call
+                        node
+                        GetLeft
+            Assign @323
+               ntb
+               true
+         Print @324
+            Call
+               node
+               GetKey
+         IfStatement @325
+            Call
+               node
+               GetHas_Right
+            Block
+               Assign @328
+                  ntb
+                  Call
+                     this
+                     RecPrint
+                     Call
+                        node
+                        GetRight
+            Assign @329
+               ntb
+               true
+         true

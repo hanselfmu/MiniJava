@@ -1,0 +1,605 @@
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	call BS$BS
+	movq %rax,%rdi
+	movq $20,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+BinarySearch$$: .quad 0
+
+BS$Start:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	pushq %rdi
+	movq %rdi,%rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rax
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rax
+	movq $8,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done1
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done1
+else1:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done1:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $19,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done2
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done2
+else2:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done2:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $20,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done3
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done3
+else3:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done3:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $21,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done4
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done4
+else4:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done4:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $37,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done5
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done5
+else5:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done5:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $38,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done6
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done6
+else6:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done6:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $39,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done7
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done7
+else7:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done7:
+	pushq %rdi
+	movq %rdi,%rax
+	movq $50,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done8
+	movq $1,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	jmp done8
+else8:
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+done8:
+	movq $999,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$Search:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $56,%rsp
+	movq $0,%rax
+	movq %rax,-48(%rbp)
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	movq 8(%rdi),%rax
+	movq 0(%rax),%rax
+	movq %rax,-16(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+	movq $1,%rax
+	movq %rax,-32(%rbp)
+test1:
+	movq -32(%rbp),%rax
+	cmpq $0,%rax
+	je done9
+	movq -24(%rbp),%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-40(%rbp)
+	pushq %rdi
+	movq %rdi,%rax
+	movq -40(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-40(%rbp)
+	movq 8(%rdi),%rax
+	pushq %rax
+	movq -40(%rbp),%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax
+	movq %rax,-48(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq -48(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else9
+	movq -40(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	jmp done10
+else9:
+	movq -40(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-24(%rbp)
+done10:
+	pushq %rdi
+	movq %rdi,%rax
+	movq -48(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done11
+	movq $0,%rax
+	movq %rax,-32(%rbp)
+	jmp done11
+else10:
+	movq $1,%rax
+	movq %rax,-32(%rbp)
+done11:
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else11
+	movq $0,%rax
+	movq %rax,-32(%rbp)
+	jmp done12
+else11:
+	movq $0,%rax
+	movq %rax,-56(%rbp)
+done12:
+	jmp test1
+done9:
+	pushq %rdi
+	movq %rdi,%rax
+	movq -48(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je done13
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+	jmp done13
+else12:
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+done13:
+	movq -8(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$Div:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $24,%rsp
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	movq $0,%rax
+	movq %rax,-16(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-24(%rbp)
+test2:
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done14
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $2,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	jmp test2
+done14:
+	movq -8(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$Compare:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else13
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	jmp done15
+else13:
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jl else14
+	cmpq $0,%rax
+	je done16
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	jmp done16
+else14:
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+done16:
+done15:
+	movq -8(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$Print:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+test3:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq 16(%rdi),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done17
+	movq 8(%rdi),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	movq 8(%rdx,%rax,8),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	jmp test3
+done17:
+	movq $99999,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$Init:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $32,%rsp
+	movq 16(%rbp),%rax
+	movq %rax,16(%rdi)
+	movq 16(%rbp),%rax
+	pushq %rax
+	incq %rax
+	shlq $3,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call mjmalloc
+	popq %rdi
+	popq %rdx
+	movq %rdx,0(%rax)
+	movq $8,%rcx
+	pushq %rax
+test4:
+	testq $0,%rdx
+	je done18
+	addq %rcx,%rax
+	movq $0,(%rax)
+	shlq $2,%rcx
+	decq %rdx
+	jmp test4
+done18:
+	popq %rax
+	movq %rax,8(%rdi)
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+	movq 16(%rdi),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+test5:
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq 16(%rdi),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge done19
+	movq $2,%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	imulq %rdx,%rax
+	movq %rax,-32(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $3,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-24(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq -32(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	popq %rdx
+	movq 8(%rdi),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-8(%rbp)
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	negq %rax
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	jmp test5
+done19:
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+BS$BS:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $24,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq BS$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+BS$$: .quad 0
+	.quad BS$BS
+	.quad BS$Start
+	.quad BS$Search
+	.quad BS$Div
+	.quad BS$Compare
+	.quad BS$Print
+	.quad BS$Init

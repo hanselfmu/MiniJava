@@ -1,0 +1,517 @@
+class RunClass{
+    public static void main(String[] a){
+	System.out.println(new A().test(10));
+    }
+}
+
+class A{
+    int m;
+    int n;
+    int[] array;
+    public int test(int num){
+	int x;
+        int y;
+        int z;
+        int init;
+        int[] arr;
+        int other;
+        A b;
+        A var;
+        x = 10;
+        y = 20;
+        arr = new int[30];
+        arr[0] = 40; 
+        arr[5] = 50;
+        arr[6] = 60;
+        init = this.Init(1000, 2000, 10); //this.m = 1000, this.n = 2000
+        // z = 10 + 20 + ... + 60 = 210
+        z = x + y + arr.length; // + arr[0] + arr[5] + arr[6]; // 2000
+        System.out.println(this.getFirst());
+        System.out.println(this.getSecond());
+        b = new A(); 
+        var = new B();
+        System.out.println(this.getFirst());
+        System.out.println(this.getSecond());
+        other = var.Init(10, 10, 10);
+        System.out.println(var.getFirst());
+        System.out.println(var.getSecond());
+        System.out.println(this.getFirst());
+        System.out.println(this.getSecond());
+        // 210 + this.test2(10, 10, 20, 210)
+        other = var.getFirst() + var.getSecond(); // 20
+	System.out.println(0);
+        System.out.println(z);
+        System.out.println(init);
+        System.out.println(this.getFirst());
+        System.out.println(this.getSecond());
+        System.out.println(other);
+        return z + this.test2(x, x, y, z) + init + this.getFirst() + this.getSecond() + other;
+        // return 210 + 10 + 10 + 20 + 210 + 40 + 3000 = 3520
+   }
+   
+   public int Init(int var1, int var2, int len) {
+     m = var1;
+     n = var2;
+     array = new int[len];
+     return 0;
+   }
+
+   public int test2(int a, int b, int c, int d) {
+     int s;
+     int t;
+     s = 10;
+     t = s + 20;
+     return a + b + c + d + s + t;
+   }
+
+   public int getFirst() {
+     return m;
+   }
+
+   public int getSecond() {
+     return n;
+   } 
+
+}
+
+class B extends A {
+
+
+}
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	call A$A
+	movq %rax,%rdi
+	movq $10,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+RunClass$$: .quad 0
+
+A$test:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $64,%rsp
+	movq $10,%rax
+	movq %rax,-8(%rbp)
+	movq $20,%rax
+	movq %rax,-16(%rbp)
+	movq $30,%rax
+	pushq %rax
+	incq %rax
+	shlq $3,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call mjmalloc
+	popq %rdi
+	popq %rdx
+	movq %rdx,0(%rax)
+	movq $8,%rcx
+	pushq %rax
+test1:
+	testq $0,%rdx
+	je done1
+	addq %rcx,%rax
+	movq $0,(%rax)
+	shlq $2,%rcx
+	decq %rdx
+	jmp test1
+done1:
+	popq %rax
+	movq %rax,-40(%rbp)
+	movq $0,%rax
+	pushq %rax
+	movq $40,%rax
+	popq %rdx
+	movq -40(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq $5,%rax
+	pushq %rax
+	movq $50,%rax
+	popq %rdx
+	movq -40(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	movq $6,%rax
+	pushq %rax
+	movq $60,%rax
+	popq %rdx
+	movq -40(%rbp),%rcx
+	movq %rax,8(%rcx,%rdx,8)
+	pushq %rdi
+	movq $1000,%rax
+	pushq %rax
+	movq $2000,%rax
+	pushq %rax
+	movq $10,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-32(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -40(%rbp),%rax
+	movq 0(%rax),%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-24(%rbp)
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	call A$A
+	movq %rax,-56(%rbp)
+	call B$B
+	movq %rax,-64(%rbp)
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq -64(%rbp),%rax
+	movq %rax,%rdi
+	movq $10,%rax
+	pushq %rax
+	movq $10,%rax
+	pushq %rax
+	movq $10,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-48(%rbp)
+	pushq %rdi
+	movq -64(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq -64(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq -64(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rax
+	pushq %rdi
+	movq -64(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-48(%rbp)
+	movq $0,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -24(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -32(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -48(%rbp),%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq -24(%rbp),%rax
+	pushq %rax
+	pushq %rdi
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -32(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	pushq %rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -48(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+A$Init:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 32(%rbp),%rax
+	movq %rax,8(%rdi)
+	movq 24(%rbp),%rax
+	movq %rax,16(%rdi)
+	movq 16(%rbp),%rax
+	pushq %rax
+	incq %rax
+	shlq $3,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call mjmalloc
+	popq %rdi
+	popq %rdx
+	movq %rdx,0(%rax)
+	movq $8,%rcx
+	pushq %rax
+test2:
+	testq $0,%rdx
+	je done2
+	addq %rcx,%rax
+	movq $0,(%rax)
+	shlq $2,%rcx
+	decq %rdx
+	jmp test2
+done2:
+	popq %rax
+	movq %rax,24(%rdi)
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+A$test2:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	movq $10,%rax
+	movq %rax,-8(%rbp)
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq $20,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	movq 40(%rbp),%rax
+	pushq %rax
+	movq 32(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq 24(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+A$getFirst:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 8(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+A$getSecond:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+A$A:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $32,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq A$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq $0,24(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+A$$: .quad 0
+	.quad A$A
+	.quad A$test
+	.quad A$Init
+	.quad A$test2
+	.quad A$getFirst
+	.quad A$getSecond
+
+B$B:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $32,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq B$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq $0,24(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+B$$: .quad A$$
+	.quad B$B
+	.quad A$test
+	.quad A$Init
+	.quad A$test2
+	.quad A$getFirst
+	.quad A$getSecond
+
+

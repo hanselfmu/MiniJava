@@ -1,0 +1,38 @@
+Semantic Analysis complete: no errors
+Symbol Tables:
+
+Global:
+	A-> Binding=[id= A|type= ClassType- id: A, base: Object]
+		call-> Binding=[id= call|type= MethodType- return: ClassType- id: A, base: Object]
+
+		var-> Binding=[id= var|type= ClassType- id: A, base: Object]
+		j-> Binding=[id= j|type= int]
+		k-> Binding=[id= k|type= int]
+		i-> Binding=[id= i|type= int]
+
+	B-> Binding=[id= B|type= ClassType- id: B, base: A]
+		call-> Binding=[id= call|type= MethodType- return: ClassType- id: B, base: A]
+
+		v-> Binding=[id= v|type= ClassType- id: B, base: A]
+		var-> Binding=[id= var|type= ClassType- id: A, base: Object]
+		m-> Binding=[id= m|type= int]
+		j-> Binding=[id= j|type= int]
+		k-> Binding=[id= k|type= int]
+		i-> Binding=[id= i|type= int]
+
+	C-> Binding=[id= C|type= ClassType- id: C, base: B]
+		v-> Binding=[id= v|type= ClassType- id: B, base: A]
+		call-> Binding=[id= call|type= MethodType- return: ClassType- id: B, base: A]
+		var-> Binding=[id= var|type= ClassType- id: A, base: Object]
+		n-> Binding=[id= n|type= int]
+		m-> Binding=[id= m|type= int]
+		j-> Binding=[id= j|type= int]
+		k-> Binding=[id= k|type= int]
+		i-> Binding=[id= i|type= int]
+
+	InheritanceExample-> Binding=[id= InheritanceExample|type= ClassType- id: InheritanceExample, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
+

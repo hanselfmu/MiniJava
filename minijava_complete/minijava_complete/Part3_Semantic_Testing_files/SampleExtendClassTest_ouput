@@ -1,0 +1,43 @@
+// Running TestSemantics on SampleExtendClassTest.java
+
+Semantic Analysis complete: no errors
+Symbol Tables:
+
+Global:
+	SampleExtendClassTest-> Binding=[id= SampleExtendClassTest|type= ClassType- id: SampleExtendClassTest, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
+	SampleClassD-> Binding=[id= SampleClassD|type= ClassType- id: SampleClassD, base: SampleClassC]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: int]
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassB-> Binding=[id= SampleClassB|type= ClassType- id: SampleClassB, base: SampleAbstractClass]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: int]
+		s3-> Binding=[id= s3|type= int]
+
+	SampleAbstractClass-> Binding=[id= SampleAbstractClass|type= ClassType- id: SampleAbstractClass, base: Object]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: int]
+			i-> Binding=[id= i|type= int]
+
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassC-> Binding=[id= SampleClassC|type= ClassType- id: SampleClassC, base: SampleClassA]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: int]
+		s3-> Binding=[id= s3|type= int]
+
+	SampleClassA-> Binding=[id= SampleClassA|type= ClassType- id: SampleClassA, base: SampleAbstractClass]
+		s2-> Binding=[id= s2|type= ArrayType- 1, int]
+		s1-> Binding=[id= s1|type= int]
+		foo-> Binding=[id= foo|type= MethodType- return: int, Param1: int]
+		s3-> Binding=[id= s3|type= int]
+

@@ -1,0 +1,1966 @@
+// The classes are basically the same as the BinaryTree 
+// file except the visitor classes and the accept method
+// in the Tree class
+
+class TreeVisitor{
+    public static void main(String[] a){
+	System.out.println(new TV().Start());
+    }
+}
+
+class TV {
+
+    public int Start(){
+	Tree root ;
+	boolean ntb ;
+	int nti ;
+	MyVisitor v ;
+
+	root = new Tree();
+	ntb = root.Init(16);
+	ntb = root.Print();
+	System.out.println(100000000);
+	ntb = root.Insert(8) ;
+	ntb = root.Insert(24) ;
+	ntb = root.Insert(4) ;
+	ntb = root.Insert(12) ;
+	ntb = root.Insert(20) ;
+	ntb = root.Insert(28) ;
+	ntb = root.Insert(14) ;
+	ntb = root.Print();
+	System.out.println(100000000);
+	v = new MyVisitor();
+	System.out.println(50000000);
+	nti = root.accept(v); /*
+	System.out.println(100000000);
+	System.out.println(root.Search(24));
+	System.out.println(root.Search(12));
+	System.out.println(root.Search(16));
+	System.out.println(root.Search(50));
+	System.out.println(root.Search(12));
+	ntb = root.Delete(12);
+	ntb = root.Print();
+	System.out.println(root.Search(12)); */
+
+	return 0 ;
+    }
+
+}
+
+
+class Tree{
+    Tree left ;
+    Tree right;
+    int key ;
+    boolean has_left ;
+    boolean has_right ;
+    Tree my_null ;
+
+
+
+    //Tree new_node ;
+    //Tree current_node ;
+    //Tree parent_node ;
+    
+   // boolean ntb ;
+    //boolean cont ;
+    //boolean found ;
+    //int ifound ;
+  //  boolean is_root ;
+  //  int     nti ;
+  //  int key_aux ;
+   // int auxkey1 ;
+   // int auxkey2 ;
+
+    public boolean Init(int v_key){
+	key = v_key ;
+	has_left = false ;
+	has_right = false ;
+	return true ;
+    }
+
+    public boolean SetRight(Tree rn){
+	right = rn ;
+	return true ;
+    }
+
+    public boolean SetLeft(Tree ln){
+	left = ln ;
+	return true ;
+    }
+
+    public Tree GetRight(){
+	return right ;
+    }
+
+    public Tree GetLeft(){
+	return left;
+    }
+
+    public int GetKey(){
+	return key ;
+    }
+
+    public boolean SetKey(int v_key){
+	key = v_key ;
+	return true ;
+    }
+
+    public boolean GetHas_Right(){
+	return has_right ;
+    }
+
+    public boolean GetHas_Left(){
+	return has_left ;
+    }
+
+    public boolean SetHas_Left(boolean val){
+	 has_left = val ;
+	 return true ;
+    }
+
+    public boolean SetHas_Right(boolean val){
+	 has_right = val ;
+	 return true ;
+    }
+
+    public boolean Compare(int num1 , int num2){
+	boolean ntb ;
+	int nti ;
+
+	ntb = false ;
+	nti = num2 + 1 ;
+	if (num1 < num2) ntb = false ;
+	else if (!(num1 < nti)) ntb = false ;
+	else ntb = true ;
+	return ntb ;
+    }
+
+    public boolean Insert(int v_key){
+	Tree new_node ;
+	boolean ntb ;
+	Tree current_node ;
+	boolean cont ;
+	int key_aux ;
+
+	new_node = new Tree();
+	ntb = new_node.Init(v_key) ;
+	current_node = this ;
+	cont = true ;
+	while (cont){
+	    key_aux = current_node.GetKey();
+	    if (v_key < key_aux){
+		if (current_node.GetHas_Left())
+		    current_node = current_node.GetLeft() ;
+		else {
+		    cont = false ;
+		    ntb = current_node.SetHas_Left(true);
+		    ntb = current_node.SetLeft(new_node);
+		}
+	    }
+	    else{
+		if (current_node.GetHas_Right())
+		    current_node = current_node.GetRight() ;
+		else {
+		    cont = false ;
+		    ntb = current_node.SetHas_Right(true);
+		    ntb = current_node.SetRight(new_node);
+		}
+	    }
+	}
+	return true ;
+    }
+
+    public boolean Delete(int v_key){
+	Tree current_node ;
+	Tree parent_node ;
+	boolean cont ;
+	boolean found ;
+	boolean ntb ;
+	boolean is_root ;
+	int key_aux ;
+
+	current_node = this ;
+	parent_node = this ;
+	cont = true ;
+	found = false ;
+	is_root = true ;
+	while (cont){
+	    key_aux = current_node.GetKey();
+	    if (v_key < key_aux)
+		if (current_node.GetHas_Left()){
+		    parent_node = current_node ;
+		    current_node = current_node.GetLeft() ;
+		}
+		else cont = false ;
+	    else 
+		if (key_aux < v_key)
+		    if (current_node.GetHas_Right()){
+			parent_node = current_node ;
+			current_node = current_node.GetRight() ;
+		    }
+		    else cont = false ;
+		else { 
+		    if (is_root) 
+			if (!current_node.GetHas_Right() && 
+			    !current_node.GetHas_Left() )
+			    ntb = true ;
+			else 
+			    ntb = this.Remove(parent_node,current_node); 
+		    else ntb = this.Remove(parent_node,current_node);
+		    found = true ;
+		    cont = false ;
+		}
+	    is_root = false ;
+	}
+	return found ;
+    }
+
+    public boolean Remove(Tree p_node, Tree c_node){
+	boolean ntb ;
+	int auxkey1 ;
+	int auxkey2 ;
+	
+	if (c_node.GetHas_Left()) 
+	    ntb = this.RemoveLeft(p_node,c_node) ;
+	else 
+	    if (c_node.GetHas_Right())
+		ntb = this.RemoveRight(p_node,c_node) ;
+	    else {
+		auxkey1 = c_node.GetKey();
+		auxkey2 = (p_node.GetLeft()).GetKey() ;
+		if (this.Compare(auxkey1,auxkey2)) {
+		    ntb = p_node.SetLeft(my_null);
+		    ntb = p_node.SetHas_Left(false);
+		}
+		else {
+		    ntb = p_node.SetRight(my_null);
+		    ntb = p_node.SetHas_Right(false);
+		}
+	    }
+	return true ;
+    }
+
+    public boolean RemoveRight(Tree p_node, Tree c_node){
+	boolean ntb ;
+	while (c_node.GetHas_Right()){
+	    ntb = c_node.SetKey((c_node.GetRight()).GetKey());
+	    p_node = c_node ;
+	    c_node = c_node.GetRight() ;
+	}
+	ntb = p_node.SetRight(my_null);
+	ntb = p_node.SetHas_Right(false);
+	return true ;
+    }
+
+    public boolean RemoveLeft(Tree p_node, Tree c_node){
+	boolean ntb ;
+	while (c_node.GetHas_Left()){
+	    ntb = c_node.SetKey((c_node.GetLeft()).GetKey());
+	    p_node = c_node ;
+	    c_node = c_node.GetLeft() ;
+	}
+	ntb = p_node.SetLeft(my_null);
+	ntb = p_node.SetHas_Left(false);
+	return true ;
+    }
+
+
+    public int Search(int v_key){
+	Tree current_node ;
+	int ifound ;
+	boolean cont ;
+	int key_aux ;
+
+	current_node = this ;
+	cont = true ;
+	ifound = 0 ;
+	while (cont){
+	    key_aux = current_node.GetKey();
+	    if (v_key < key_aux)
+		if (current_node.GetHas_Left())
+		    current_node = current_node.GetLeft() ;
+		else cont = false ;
+	    else 
+		if (key_aux < v_key)
+		    if (current_node.GetHas_Right())
+			current_node = current_node.GetRight() ;
+		    else cont = false ;
+		else { 
+		    ifound = 1 ;
+		    cont = false ;
+		}
+	}
+	return ifound ;
+    }
+
+    public boolean Print(){
+	boolean ntb ;
+	Tree current_node ;
+
+	current_node = this ;
+	ntb = this.RecPrint(current_node);
+	return true ;
+    }
+
+    public boolean RecPrint(Tree node){
+	boolean ntb ;
+
+	if (node.GetHas_Left()){
+	    ntb = this.RecPrint(node.GetLeft());
+	} else ntb = true ;
+	System.out.println(node.GetKey());
+	if (node.GetHas_Right()){
+	    ntb = this.RecPrint(node.GetRight());
+	} else ntb = true ;
+	return true ;
+    }
+    
+    public int accept(Visitor v){
+	int nti ;
+
+	System.out.println(333);
+	nti = v.visit(this) ;
+	return 0 ;
+    }
+
+}
+
+  
+
+class Visitor {
+    Tree l ;
+    Tree r ;
+
+    public int visit(Tree n){
+	int nti ;
+
+	if (n.GetHas_Right()){
+	    r = n.GetRight() ;
+	    nti = r.accept(this) ; }
+	else nti = 0 ;
+
+	if (n.GetHas_Left()) {
+	    l = n.GetLeft(); 
+	    nti = l.accept(this) ; }
+	else nti = 0 ;
+
+	return 0;
+    }
+
+}
+
+
+class MyVisitor extends Visitor {
+
+    public int visit(Tree n){
+	int nti ;
+
+	if (n.GetHas_Right()){
+	    r = n.GetRight() ;
+	    nti = r.accept(this) ; }
+	else nti = 0 ;
+
+	System.out.println(n.GetKey());
+
+	if (n.GetHas_Left()) {
+	    l = n.GetLeft(); 
+	    nti =l.accept(this) ; }
+	else nti = 0 ;
+
+	return 0;
+    }
+
+}
+Global:
+	Visitor-> Binding=[id= Visitor|type= ClassType-(id: Visitor, base: Object)|belonging= global|offset= -1]
+		r-> Binding=[id= r|type= ClassType-(id: Tree, base: Object)|belonging= Visitor|offset= 16]
+		visit-> Binding=[id= visit|type= MethodType-(return type: int, Param1: ClassType-(id: Tree, base: Object))|belonging= Visitor|offset= 8]
+			nti-> Binding=[id= nti|type= int|belonging= visit|offset= 8]
+			n-> Binding=[id= n|type= ClassType-(id: Tree, base: Object)|belonging= visit|offset= -16]
+
+		l-> Binding=[id= l|type= ClassType-(id: Tree, base: Object)|belonging= Visitor|offset= 8]
+
+	Tree-> Binding=[id= Tree|type= ClassType-(id: Tree, base: Object)|belonging= global|offset= -1]
+		Search-> Binding=[id= Search|type= MethodType-(return type: int, Param1: int)|belonging= Tree|offset= 144]
+			ifound-> Binding=[id= ifound|type= int|belonging= Search|offset= 16]
+			v_key-> Binding=[id= v_key|type= int|belonging= Search|offset= -16]
+			key_aux-> Binding=[id= key_aux|type= int|belonging= Search|offset= 32]
+			cont-> Binding=[id= cont|type= boolean|belonging= Search|offset= 24]
+			current_node-> Binding=[id= current_node|type= ClassType-(id: Tree, base: Object)|belonging= Search|offset= 8]
+
+		my_null-> Binding=[id= my_null|type= ClassType-(id: Tree, base: Object)|belonging= Tree|offset= 48]
+		Insert-> Binding=[id= Insert|type= MethodType-(return type: boolean, Param1: int)|belonging= Tree|offset= 104]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Insert|offset= 16]
+			new_node-> Binding=[id= new_node|type= ClassType-(id: Tree, base: Object)|belonging= Insert|offset= 8]
+			v_key-> Binding=[id= v_key|type= int|belonging= Insert|offset= -16]
+			key_aux-> Binding=[id= key_aux|type= int|belonging= Insert|offset= 40]
+			cont-> Binding=[id= cont|type= boolean|belonging= Insert|offset= 32]
+			current_node-> Binding=[id= current_node|type= ClassType-(id: Tree, base: Object)|belonging= Insert|offset= 24]
+
+		accept-> Binding=[id= accept|type= MethodType-(return type: int, Param1: ClassType-(id: Visitor, base: Object))|belonging= Tree|offset= 168]
+			v-> Binding=[id= v|type= ClassType-(id: Visitor, base: Object)|belonging= accept|offset= -16]
+			nti-> Binding=[id= nti|type= int|belonging= accept|offset= 8]
+
+		Compare-> Binding=[id= Compare|type= MethodType-(return type: boolean, Param1: int, Param2: int)|belonging= Tree|offset= 96]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Compare|offset= 8]
+			nti-> Binding=[id= nti|type= int|belonging= Compare|offset= 16]
+			num2-> Binding=[id= num2|type= int|belonging= Compare|offset= -16]
+			num1-> Binding=[id= num1|type= int|belonging= Compare|offset= -24]
+
+		SetHas_Left-> Binding=[id= SetHas_Left|type= MethodType-(return type: boolean, Param1: boolean)|belonging= Tree|offset= 80]
+			val-> Binding=[id= val|type= boolean|belonging= SetHas_Left|offset= -16]
+
+		RemoveLeft-> Binding=[id= RemoveLeft|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object), Param2: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 136]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= RemoveLeft|offset= 8]
+			p_node-> Binding=[id= p_node|type= ClassType-(id: Tree, base: Object)|belonging= RemoveLeft|offset= -24]
+			c_node-> Binding=[id= c_node|type= ClassType-(id: Tree, base: Object)|belonging= RemoveLeft|offset= -16]
+
+		Init-> Binding=[id= Init|type= MethodType-(return type: boolean, Param1: int)|belonging= Tree|offset= 8]
+			v_key-> Binding=[id= v_key|type= int|belonging= Init|offset= -16]
+
+		SetKey-> Binding=[id= SetKey|type= MethodType-(return type: boolean, Param1: int)|belonging= Tree|offset= 56]
+			v_key-> Binding=[id= v_key|type= int|belonging= SetKey|offset= -16]
+
+		RecPrint-> Binding=[id= RecPrint|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 160]
+			node-> Binding=[id= node|type= ClassType-(id: Tree, base: Object)|belonging= RecPrint|offset= -16]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= RecPrint|offset= 8]
+
+		left-> Binding=[id= left|type= ClassType-(id: Tree, base: Object)|belonging= Tree|offset= 8]
+		Remove-> Binding=[id= Remove|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object), Param2: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 120]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Remove|offset= 8]
+			p_node-> Binding=[id= p_node|type= ClassType-(id: Tree, base: Object)|belonging= Remove|offset= -24]
+			auxkey1-> Binding=[id= auxkey1|type= int|belonging= Remove|offset= 16]
+			auxkey2-> Binding=[id= auxkey2|type= int|belonging= Remove|offset= 24]
+			c_node-> Binding=[id= c_node|type= ClassType-(id: Tree, base: Object)|belonging= Remove|offset= -16]
+
+		Delete-> Binding=[id= Delete|type= MethodType-(return type: boolean, Param1: int)|belonging= Tree|offset= 112]
+			is_root-> Binding=[id= is_root|type= boolean|belonging= Delete|offset= 48]
+			parent_node-> Binding=[id= parent_node|type= ClassType-(id: Tree, base: Object)|belonging= Delete|offset= 16]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Delete|offset= 40]
+			v_key-> Binding=[id= v_key|type= int|belonging= Delete|offset= -16]
+			key_aux-> Binding=[id= key_aux|type= int|belonging= Delete|offset= 56]
+			cont-> Binding=[id= cont|type= boolean|belonging= Delete|offset= 24]
+			found-> Binding=[id= found|type= boolean|belonging= Delete|offset= 32]
+			current_node-> Binding=[id= current_node|type= ClassType-(id: Tree, base: Object)|belonging= Delete|offset= 8]
+
+		right-> Binding=[id= right|type= ClassType-(id: Tree, base: Object)|belonging= Tree|offset= 16]
+		key-> Binding=[id= key|type= int|belonging= Tree|offset= 24]
+		SetHas_Right-> Binding=[id= SetHas_Right|type= MethodType-(return type: boolean, Param1: boolean)|belonging= Tree|offset= 88]
+			val-> Binding=[id= val|type= boolean|belonging= SetHas_Right|offset= -16]
+
+		GetRight-> Binding=[id= GetRight|type= MethodType-(return type: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 32]
+
+		GetLeft-> Binding=[id= GetLeft|type= MethodType-(return type: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 40]
+
+		RemoveRight-> Binding=[id= RemoveRight|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object), Param2: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 128]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= RemoveRight|offset= 8]
+			p_node-> Binding=[id= p_node|type= ClassType-(id: Tree, base: Object)|belonging= RemoveRight|offset= -24]
+			c_node-> Binding=[id= c_node|type= ClassType-(id: Tree, base: Object)|belonging= RemoveRight|offset= -16]
+
+		SetLeft-> Binding=[id= SetLeft|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 24]
+			ln-> Binding=[id= ln|type= ClassType-(id: Tree, base: Object)|belonging= SetLeft|offset= -16]
+
+		has_right-> Binding=[id= has_right|type= boolean|belonging= Tree|offset= 40]
+		Print-> Binding=[id= Print|type= MethodType-(return type: boolean)|belonging= Tree|offset= 152]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Print|offset= 8]
+			current_node-> Binding=[id= current_node|type= ClassType-(id: Tree, base: Object)|belonging= Print|offset= 16]
+
+		GetHas_Left-> Binding=[id= GetHas_Left|type= MethodType-(return type: boolean)|belonging= Tree|offset= 72]
+
+		GetHas_Right-> Binding=[id= GetHas_Right|type= MethodType-(return type: boolean)|belonging= Tree|offset= 64]
+
+		GetKey-> Binding=[id= GetKey|type= MethodType-(return type: int)|belonging= Tree|offset= 48]
+
+		SetRight-> Binding=[id= SetRight|type= MethodType-(return type: boolean, Param1: ClassType-(id: Tree, base: Object))|belonging= Tree|offset= 16]
+			rn-> Binding=[id= rn|type= ClassType-(id: Tree, base: Object)|belonging= SetRight|offset= -16]
+
+		has_left-> Binding=[id= has_left|type= boolean|belonging= Tree|offset= 32]
+
+	MyVisitor-> Binding=[id= MyVisitor|type= ClassType-(id: MyVisitor, base: Visitor)|belonging= global|offset= -1]
+		r-> Binding=[id= r|type= ClassType-(id: Tree, base: Object)|belonging= Visitor|offset= 16]
+		l-> Binding=[id= l|type= ClassType-(id: Tree, base: Object)|belonging= Visitor|offset= 8]
+		visit-> Binding=[id= visit|type= MethodType-(return type: int, Param1: ClassType-(id: Tree, base: Object))|belonging= MyVisitor|offset= 8]
+			nti-> Binding=[id= nti|type= int|belonging= visit|offset= 8]
+			n-> Binding=[id= n|type= ClassType-(id: Tree, base: Object)|belonging= visit|offset= -16]
+
+
+	TreeVisitor-> Binding=[id= TreeVisitor|type= ClassType-(id: TreeVisitor, base: Object)|belonging= global|offset= -1]
+		main-> Binding=[id= main|type= MethodType-(return type: void)|belonging= TreeVisitor|offset= -1]
+			a-> Binding=[id= a|type= ArrayType-(1, ClassType-(id: String, base: Object))|belonging= main|offset= -1]
+
+
+	TV-> Binding=[id= TV|type= ClassType-(id: TV, base: Object)|belonging= global|offset= -1]
+		Start-> Binding=[id= Start|type= MethodType-(return type: int)|belonging= TV|offset= 8]
+			v-> Binding=[id= v|type= ClassType-(id: MyVisitor, base: Visitor)|belonging= Start|offset= 32]
+			ntb-> Binding=[id= ntb|type= boolean|belonging= Start|offset= 16]
+			root-> Binding=[id= root|type= ClassType-(id: Tree, base: Object)|belonging= Start|offset= 8]
+			nti-> Binding=[id= nti|type= int|belonging= Start|offset= 24]
+
+
+
+	.text
+	.globl asm_main
+asm_main:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq %rdi,%rcx
+	call TV$TV
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+TreeVisitor$$: .quad 0
+
+TV$Start:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $32,%rsp
+	pushq %rax
+	call Tree$Tree
+	popq %rdx
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $16,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 160(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-16(%rbp)
+	movq $100000000,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $8,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $24,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $4,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $12,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $20,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $28,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq $14,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 112(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 160(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-16(%rbp)
+	movq $100000000,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rax
+	call MyVisitor$MyVisitor
+	popq %rdx
+	movq %rax,-32(%rbp)
+	movq $50000000,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq -32(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 176(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-24(%rbp)
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+TV$TV:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $8,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq TV$$,%rdx
+	movq %rdx,(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+TV$$: .quad 0
+	.quad TV$TV
+	.quad TV$Start
+
+Tree$Init:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,24(%rdi)
+	movq $0,%rax
+	movq %rax,32(%rdi)
+	movq $0,%rax
+	movq %rax,40(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$SetRight:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,16(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$SetLeft:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,8(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$GetRight:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$GetLeft:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 8(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$GetKey:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 24(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$SetKey:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,24(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$GetHas_Right:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 40(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$GetHas_Left:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 32(%rdi),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$SetHas_Left:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,32(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$SetHas_Right:
+	pushq %rbp
+	movq %rsp,%rbp
+	movq 16(%rbp),%rax
+	movq %rax,40(%rdi)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Compare:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq $1,%rax
+	popq %rdx
+	addq %rdx,%rax
+	movq %rax,-16(%rbp)
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else1
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	jmp done1
+else1:
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq -16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jl else2
+	cmpq $0,%rax
+	je else2
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+	jmp done2
+else2:
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+done2:
+done1:
+	movq -8(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Insert:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $40,%rsp
+	pushq %rax
+	call Tree$Tree
+	popq %rdx
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	movq %rdi,%rax
+	movq %rax,-24(%rbp)
+	movq $1,%rax
+	movq %rax,-32(%rbp)
+test1:
+	movq -32(%rbp),%rax
+	cmpq $0,%rax
+	je done3
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-40(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq -40(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else3
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else4
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-24(%rbp)
+	jmp done5
+else4:
+	movq $0,%rax
+	movq %rax,-32(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq $1,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 88(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+done5:
+	jmp done4
+else3:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else5
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-24(%rbp)
+	jmp done6
+else5:
+	movq $0,%rax
+	movq %rax,-32(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq $1,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 96(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -24(%rbp),%rax
+	movq %rax,%rdi
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-16(%rbp)
+done6:
+done4:
+	jmp test1
+done3:
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Delete:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $56,%rsp
+	movq %rdi,%rax
+	movq %rax,-8(%rbp)
+	movq %rdi,%rax
+	movq %rax,-16(%rbp)
+	movq $1,%rax
+	movq %rax,-24(%rbp)
+	movq $0,%rax
+	movq %rax,-32(%rbp)
+	movq $1,%rax
+	movq %rax,-48(%rbp)
+test2:
+	movq -24(%rbp),%rax
+	cmpq $0,%rax
+	je done7
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-56(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq -56(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else6
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else7
+	movq -8(%rbp),%rax
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done9
+else7:
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done9:
+	jmp done8
+else6:
+	movq -56(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else8
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else9
+	movq -8(%rbp),%rax
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done11
+else9:
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done11:
+	jmp done10
+else8:
+	movq -48(%rbp),%rax
+	cmpq $0,%rax
+	je else10
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	xor $1,%rax
+	cmpq $0,%rax
+	je else11
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	xor $1,%rax
+	cmpq $0,%rax
+	je else11
+	movq $1,%rax
+	movq %rax,-40(%rbp)
+	jmp done13
+else11:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 128(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-40(%rbp)
+done13:
+	jmp done12
+else10:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -8(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 128(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-40(%rbp)
+done12:
+	movq $1,%rax
+	movq %rax,-32(%rbp)
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done10:
+done8:
+	movq $0,%rax
+	movq %rax,-48(%rbp)
+	jmp test2
+done7:
+	movq -32(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Remove:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $24,%rsp
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else12
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 144(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done14
+else12:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else13
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq 24(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 136(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done15
+else13:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-24(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq -24(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 104(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdx
+	popq %rdi
+	cmpq $0,%rax
+	je else14
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq 48(%rdi),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq $0,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 88(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done16
+else14:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq 48(%rdi),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq $0,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 96(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+done16:
+done15:
+done14:
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$RemoveRight:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+test3:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je done17
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,%rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 64(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq 16(%rbp),%rax
+	movq %rax,24(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,16(%rbp)
+	jmp test3
+done17:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq 48(%rdi),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 24(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq $0,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 96(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$RemoveLeft:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+test4:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je done18
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,%rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 64(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq 16(%rbp),%rax
+	movq %rax,24(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,16(%rbp)
+	jmp test4
+done18:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq 48(%rdi),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 32(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 24(%rbp),%rax
+	movq %rax,%rdi
+	movq $0,%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 88(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Search:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $32,%rsp
+	movq %rdi,%rax
+	movq %rax,-8(%rbp)
+	movq $1,%rax
+	movq %rax,-24(%rbp)
+	movq $0,%rax
+	movq %rax,-16(%rbp)
+test5:
+	movq -24(%rbp),%rax
+	cmpq $0,%rax
+	je done19
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-32(%rbp)
+	movq 16(%rbp),%rax
+	pushq %rax
+	movq -32(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else15
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else16
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done21
+else16:
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done21:
+	jmp done20
+else15:
+	movq -32(%rbp),%rax
+	pushq %rax
+	movq 16(%rbp),%rax
+	popq %rdx
+	cmpq %rax,%rdx
+	jge else17
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else18
+	pushq %rdi
+	movq %rdi,%rcx
+	movq -8(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done23
+else18:
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done23:
+	jmp done22
+else17:
+	movq $1,%rax
+	movq %rax,-16(%rbp)
+	movq $0,%rax
+	movq %rax,-24(%rbp)
+done22:
+done20:
+	jmp test5
+done19:
+	movq -16(%rbp),%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Print:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $16,%rsp
+	movq %rdi,%rax
+	movq %rax,-16(%rbp)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	movq -16(%rbp),%rax
+	pushq %rax
+	movq (%rdi),%rax
+	lea 168(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$RecPrint:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else19
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 168(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done24
+else19:
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+done24:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else20
+	pushq %rdi
+	movq %rdi,%rcx
+	movq %rdi,%rax
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	pushq %rax
+	movq (%rdi),%rax
+	lea 168(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done25
+else20:
+	movq $1,%rax
+	movq %rax,-8(%rbp)
+done25:
+	movq $1,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$accept:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	movq $333,%rax
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq %rdi,%rax
+	pushq %rcx
+	movq (%rdi),%rax
+	lea 16(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Tree$Tree:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $56,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq Tree$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq $0,24(%rax)
+	movq $0,32(%rax)
+	movq $0,40(%rax)
+	movq $0,48(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+Tree$$: .quad 0
+	.quad Tree$Tree
+	.quad Tree$Init
+	.quad Tree$SetRight
+	.quad Tree$SetLeft
+	.quad Tree$GetRight
+	.quad Tree$GetLeft
+	.quad Tree$GetKey
+	.quad Tree$SetKey
+	.quad Tree$GetHas_Right
+	.quad Tree$GetHas_Left
+	.quad Tree$SetHas_Left
+	.quad Tree$SetHas_Right
+	.quad Tree$Compare
+	.quad Tree$Insert
+	.quad Tree$Delete
+	.quad Tree$Remove
+	.quad Tree$RemoveRight
+	.quad Tree$RemoveLeft
+	.quad Tree$Search
+	.quad Tree$Print
+	.quad Tree$RecPrint
+	.quad Tree$accept
+
+Visitor$visit:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else21
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,16(%rdi)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rdi),%rax
+	movq %rax,%rdi
+	movq %rdi,%rax
+	pushq %rcx
+	movq (%rdi),%rax
+	lea 176(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done26
+else21:
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+done26:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else22
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,8(%rdi)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 8(%rdi),%rax
+	movq %rax,%rdi
+	movq %rdi,%rax
+	pushq %rcx
+	movq (%rdi),%rax
+	lea 176(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done27
+else22:
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+done27:
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+Visitor$Visitor:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $24,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq Visitor$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+Visitor$$: .quad 0
+	.quad Visitor$Visitor
+	.quad Visitor$visit
+
+MyVisitor$visit:
+	pushq %rbp
+	movq %rsp,%rbp
+	subq $8,%rsp
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 72(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else23
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 40(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,16(%rdi)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rdi),%rax
+	movq %rax,%rdi
+	movq %rdi,%rax
+	pushq %rcx
+	movq (%rdi),%rax
+	lea 176(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done28
+else23:
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+done28:
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 56(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	pushq %rdi
+	movq %rax,%rdi
+	call put
+	popq %rdi
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 80(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	cmpq $0,%rax
+	je else24
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 16(%rbp),%rax
+	movq %rax,%rdi
+	movq (%rdi),%rax
+	lea 48(%rax),%rax
+	call *(%rax)
+	popq %rdi
+	movq %rax,8(%rdi)
+	pushq %rdi
+	movq %rdi,%rcx
+	movq 8(%rdi),%rax
+	movq %rax,%rdi
+	movq %rdi,%rax
+	pushq %rcx
+	movq (%rdi),%rax
+	lea 176(%rax),%rax
+	call *(%rax)
+	popq %rdx
+	popq %rdi
+	movq %rax,-8(%rbp)
+	jmp done29
+else24:
+	movq $0,%rax
+	movq %rax,-8(%rbp)
+done29:
+	movq $0,%rax
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+MyVisitor$MyVisitor:
+	pushq %rbp
+	movq %rsp,%rbp
+	pushq %rdi
+	movq $24,%rdi
+	call mjmalloc
+	popq %rdi
+	leaq MyVisitor$$,%rdx
+	movq %rdx,(%rax)
+	movq $0,8(%rax)
+	movq $0,16(%rax)
+	movq %rbp,%rsp
+	popq %rbp
+	ret 
+
+	.data
+MyVisitor$$: .quad Visitor$$
+	.quad MyVisitor$MyVisitor
+	.quad MyVisitor$visit

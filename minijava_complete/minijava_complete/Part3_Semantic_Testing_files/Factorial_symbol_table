@@ -1,0 +1,14 @@
+Symbol Tables:
+
+Global:
+	Fac-> Binding=[id= Fac|type= ClassType- id: Fac, base: Object]
+		ComputeFac-> Binding=[id= ComputeFac|type= MethodType- return: int, Param1: int]
+			num-> Binding=[id= num|type= int]
+			num_aux-> Binding=[id= num_aux|type= int]
+
+
+	Factorial-> Binding=[id= Factorial|type= ClassType- id: Factorial, base: Object]
+		main-> Binding=[id= main|type= MethodType- return: void]
+			a-> Binding=[id= a|type= ArrayType- 1, ClassType- id: String, base: Object]
+
+
